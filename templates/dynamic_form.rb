@@ -1,0 +1,1 @@
+run 'rails plugin install git://github.com/rails/dynamic_form.git'
