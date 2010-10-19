@@ -1,6 +1,7 @@
 require 'thor'
 require 'thor/actions'
 require 'active_support/secure_random'
+require 'prologue/version'
 
 module Prologue
   class CLI < Thor
