@@ -38,7 +38,7 @@ module Prologue
         rails new #{project} \
           --template=#{template} \
           --skip-test-unit \
-          --skip-prototype | tee ~/Desktop/prologue_log.txt
+          --skip-prototype
       COMMAND
     end
 
