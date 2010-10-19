@@ -1,4 +1,4 @@
-require 'prologue/error'
+require 'prologue/version'
 
 module Prologue
   
