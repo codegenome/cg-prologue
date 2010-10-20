@@ -31,8 +31,6 @@ end
 create_file 'app/views/admin/shared/_footer.html.haml' do
 <<-FILE
 %footer#main_admin_footer
-  %a{:href => "http://quickleft.com"}
-    #{app_name.humanize}
 FILE
 end
 
