@@ -10,8 +10,7 @@ end
 
 inject_into_file 'app/controllers/admin/users_controller.rb', :after => "def index\n" do
 <<-'FILE'
-    @sortable = SortIndex::Sortable.new(params, INDEX_SORT)
-    @users = User.paginate :page => params[:page], :order => @sortable.order, :per_page => 2
+    @users = User.paginate :page => params[:page], :per_page => 50
 FILE
 end
 
@@ -57,18 +56,7 @@ gsub_file 'app/controllers/admin/users_controller.rb', /ApplicationController/, 
 inject_into_file 'app/controllers/admin/users_controller.rb', :after => "class Admin::UsersController < Admin::BaseController\n" do
 <<-'FILE'
   before_filter :find_user, :only => [:edit, :update, :destroy]
-  
-  INDEX_SORT = SortIndex::Config.new(
-    {'name' => 'name'},
-    {
-      'email' => 'email',
-      'login' => 'login',
-      'roles_mask' => 'roles_mask',
-      'last_login_at' => 'last_login_at'
-    }
-    #, optionally SortIndex::SORT_KEY_ASC
-  )
-  
+    
   def find_user
     @user = User.find(params[:id])
   end
@@ -117,8 +105,8 @@ create_file 'app/views/admin/users/index.html.haml' do
   %table
     %thead
       %tr
-        %th= @sortable.header_link('name', 'Name')
-        %th= @sortable.header_link('email', 'Email')
+        %th Name
+        %th Email
         %th
         %th
     %tbody
@@ -129,7 +117,7 @@ create_file 'app/views/admin/users/index.html.haml' do
           %td= link_to "Edit", edit_admin_user_path(user), :class => 'edit_link'
           %td
             - if user.id != current_user.id
-              = link_to "Delete", admin_user_path(user), :confirm => t('forms.confirm'), :method => :delete, :class => 'delete_link'
+              = link_to "Delete", admin_user_path(user), :confirm => 'Are you sure?', :method => :delete, :class => 'delete_link'
             - else
               That's you!
   = will_paginate @users

@@ -42,9 +42,6 @@ apply File.expand_path("../friendly_id.rb", __FILE__)
 # Apply Devise?
 apply File.expand_path("../devise.rb", __FILE__) if ENV['PROLOGUE_AUTH']
 
-# Apply sorter helper
-apply File.expand_path("../sorter_lib.rb", __FILE__)
-
 # Apply admin
 apply File.expand_path("../admin.rb", __FILE__) if ENV['PROLOGUE_ADMIN']
 
