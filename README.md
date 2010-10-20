@@ -29,6 +29,13 @@ Everything is configured and ready to rock your next Rails 3 project.  We hope i
     prologue new my_app --no-admin
 
 
+### Testing generated app
+
+    rake spec
+    rake cucumber
+    bundle exec autotest
+
+
 ### Issues
 
 Please report issues to the [Prologue issue tracker](http://github.com/quickleft/prologue/issues/).
