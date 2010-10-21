@@ -34,6 +34,9 @@ end
 
 inject_into_file 'app/controllers/admin/users_controller.rb', :after => "def update\n" do
 <<-'FILE'
+    params[:user].delete(:password) if params[:user][:password].blank?
+    params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
+
     if @user.update_attributes(params[:user])
       flash[:notice] = "Successfully updated #{@user.name}."
       redirect_to admin_users_url

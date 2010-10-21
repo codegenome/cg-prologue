@@ -84,6 +84,26 @@ if ENV['PROLOGUE_ADMIN']
             = role.name.humanize
   RUBY
   end
+
+  inject_into_file 'app/controllers/admin/users_controller.rb', :after => "@user = User.new(params[:user])\n" do
+  <<-'RUBY'
+    @user.role_ids = params[:user][:role_ids] if current_user.role? :admin
+  RUBY
+  end
+
+  inject_into_file 'app/controllers/admin/users_controller.rb', :before => "if @user.update_attributes(params[:user])\n" do
+  <<-'RUBY'
+    @user.send(:attributes=, { :role_ids => params[:user][:role_ids] }, false) if current_user.role? :admin
+    params[:user].delete(:role_ids)
+    
+  RUBY
+  end
+
+  inject_into_file 'app/controllers/admin/users_controller.rb', :after => "def update\n" do
+  <<-'RUBY'
+    params[:user][:role_ids] ||= []
+  RUBY
+  end
 end
 
 append_file 'db/seeds.rb' do

@@ -57,6 +57,9 @@ apply File.expand_path("../db_seed.rb", __FILE__)
 # Make a home controller
 apply File.expand_path("../home_controller.rb", __FILE__)
 
+# Make initializers
+apply File.expand_path("../initializers.rb", __FILE__)
+
 # Clean up generated routes
 apply File.expand_path("../clean_routes.rb", __FILE__)
 
