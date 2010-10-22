@@ -4,7 +4,8 @@ embed_assets: on
 
 javascripts:
   common:
-    - public/javascriptsjquery.js
+    - public/javascripts/jquery.js
+    - public/javascripts/rails.js
 
 stylesheets:
   common:

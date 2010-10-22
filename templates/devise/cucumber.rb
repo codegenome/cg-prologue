@@ -1,16 +1,3 @@
-create_file 'features/authentication.feature' do
-<<-'FILE'
-Feature: User admin authentication
-  As an administrator
-  I want to manage the application
-  So that I can have full control over the site
-
-  Scenario: Login as an admin
-    Given a logged in admin user
-    When I am on the admin
-    Then I should see "Admin"
-FILE
-end
 
 create_file 'spec/factories/user.rb' do
 <<-'FILE'
@@ -26,13 +13,13 @@ end
 Factory.define :admin, :parent => :user do |admin| 
   admin.email "quickleft@quickleft.com"
   admin.password "password" 
-  admin.roles { [ Factory(:role, :name => 'admin') ] } 
+  admin.roles { [ Factory(:role, :name => 'Admin') ] }
 end 
 
 Factory.define :member, :parent => :user do |member|
   member.email "member@quickleft.com"
   member.password "password"
-  member.roles { [ Factory(:role, :name => 'member') ] } 
+  member.roles { [ Factory(:role, :name => 'Member') ] } 
 end
 
 Factory.define :role do |role| 
@@ -79,9 +66,6 @@ end
 inject_into_file 'features/support/paths.rb', :after => "case page_name\n" do
 <<-'FILE'
       
-      when /the admin/
-        '/admin'
-
       when /logout/
         '/users/sign_out'
 

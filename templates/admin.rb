@@ -26,3 +26,4 @@ gsub_file 'app/controllers/admin/dashboard_controller.rb', /ApplicationControlle
 apply File.expand_path("../admin/users.rb", __FILE__)
 apply File.expand_path("../admin/dashboard_spec.rb", __FILE__)
 apply File.expand_path("../admin/users_spec.rb", __FILE__)
+apply File.expand_path("../admin/cucumber.rb", __FILE__)

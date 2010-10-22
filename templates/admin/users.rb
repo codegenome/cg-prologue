@@ -111,13 +111,11 @@ create_file 'app/views/admin/users/index.html.haml' do
         %th Name
         %th Email
         %th
-        %th
     %tbody
-      - for user in @users
+      - @users.each do |user|
         %tr
-          %td= user.name
+          %td= link_to user.name, edit_admin_user_path(user), :class => 'edit_link'
           %td= user.email
-          %td= link_to "Edit", edit_admin_user_path(user), :class => 'edit_link'
           %td
             - if user.id != current_user.id
               = link_to "Delete", admin_user_path(user), :confirm => 'Are you sure?', :method => :delete, :class => 'delete_link'

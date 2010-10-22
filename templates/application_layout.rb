@@ -28,7 +28,7 @@ end
 
 create_file 'app/views/shared/_end_scripts.html.haml' do
 <<-FILE
-= javascript_include_tag :defaults
+= include_javascripts :common
 FILE
 end
 
