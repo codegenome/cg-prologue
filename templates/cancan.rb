@@ -25,6 +25,10 @@ end
 inject_into_file 'app/models/role.rb', :after => "class Role < ActiveRecord::Base\n" do
 <<-RUBY
   has_and_belongs_to_many :users
+
+  def self.sanitize role
+    role.to_s.humanize.split(' ').each{ |word| word.capitalize! }.join(' ')
+  end
 RUBY
 end
 
@@ -59,7 +63,7 @@ inject_into_file 'app/models/user.rb', :before => "end\n" do
 <<-RUBY
 
   def role?(role)
-    return !!self.roles.find_by_name(role.to_s.camelize)
+    return !!self.roles.find_by_name( Role.sanitize role )
   end
 RUBY
 end
@@ -108,8 +112,8 @@ end
 
 append_file 'db/seeds.rb' do
 <<-FILE
-Role.create! :name => 'Admin'.camelize
-Role.create! :name => 'Member'.camelize
+Role.create! :name => 'Admin'
+Role.create! :name => 'Member'
 
 user1 = User.find_by_email('#{ENV['PROLOGUE_USER_EMAIL']}')
 user1.role_ids = [1,2]
