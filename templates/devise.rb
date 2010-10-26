@@ -44,15 +44,31 @@ create_file 'app/models/user.rb' do
 class User < ActiveRecord::Base
   devise :database_authenticatable, :token_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
   validates_presence_of :name
-  validates_uniqueness_of :name, :email, :case_sensitive => false
+  validates_uniqueness_of :name, :email, :case_sensitive => false, :scope => deleted_at
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
   has_friendly_id :name, :use_slug => true, :strip_non_ascii => true
+
+  def destroy
+    self.update_attribute(:deleted_at, Time.now.utc)
+  end
+
+  def self.find_with_destroyed *args
+    self.with_exclusive_scope { find(*args) }
+  end
+
+  def self.find_only_destroyed
+    self.with_exclusive_scope :find => { :conditions => "deleted_at IS NOT NULL" } do
+      all
+    end
+  end
+
 end
 RUBY
 end
 
 generate(:migration, "AddNameToUsers name:string")
 generate(:migration, "AddCachedSlugToUsers cached_slug:string")
+generate(:migration, "AddDeletedAtToUsers deleted_at:datetime")
 
 create_file 'app/views/devise/menu/_login_items.html.haml' do
 <<-'FILE'
