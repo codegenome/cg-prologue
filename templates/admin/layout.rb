@@ -55,7 +55,7 @@ create_file 'app/views/layouts/admin.html.haml' do
     %link{:rel => "shortcut icon", :href => "/images/favicon.ico", :type => "image/x-icon"}
     /[if lt IE 9]
       %script{:type => "text/javascript", :src  => "/javascripts/shiv.js"}
-    = stylesheet_link_tag "admin"
+    = include_stylesheets :admin, :media => 'all'
     = yield(:head)
     /[if IE 7]
       = stylesheet_link_tag 'ie7', :media => 'all'

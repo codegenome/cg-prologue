@@ -51,7 +51,7 @@ create_file 'app/views/layouts/application.html.haml' do
     %link{:rel => "apple-touch-icon", :href => "/images/ati.png"}
     /[if lt IE 9]
       %script{:type => "text/javascript", :src  => "/javascripts/shiv.js"}
-    = stylesheet_link_tag :all
+    = include_stylesheets :main, :media => 'all'
     = yield(:head)
     /[if IE 7]
       = stylesheet_link_tag 'ie7', :media => 'all'

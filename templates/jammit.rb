@@ -9,7 +9,9 @@ javascripts:
     - public/javascripts/core.js
 
 stylesheets:
-  common:
+  main:
     - public/stylesheets/main.css
+  admin:
+    - public/stylesheets/admin.css
 FILE
 end
