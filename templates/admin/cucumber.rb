@@ -35,7 +35,6 @@ Feature: Administer users
     | name   |
     | Member |
 
-  @javascript
   Scenario: Create, update, delete a user in the admin
     Given a logged in admin user
     When I am on the add user page
@@ -68,7 +67,6 @@ Feature: Administer users
     And the "Admin" checkbox should be checked
     Then I press "Save"
 
-    When I confirm a js popup on the next step
     Then I follow "Delete"
     Then I should see "User deleted."
     And I should not see "Bigger Boi"
