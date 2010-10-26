@@ -59,7 +59,7 @@ end
 RUBY
 end
 
-inject_into_file 'app/models/user.rb', :before => "end\n" do
+inject_into_file 'app/models/user.rb', :before => "def destroy\n" do
 <<-RUBY
 
   def role?(role)
