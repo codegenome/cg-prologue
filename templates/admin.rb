@@ -1,11 +1,6 @@
 say "Building admin"
 generate(:controller, "admin/dashboard index")
-
-inject_into_file 'config/routes.rb', :after => "devise_for :users\n" do
-<<-RUBY
-  match 'admin' => 'admin/dashboard#index'
-RUBY
-end
+route("match 'admin' => 'admin/dashboard#index'")
 
 # Do layout and SASS stuff
 apply File.expand_path("../admin/sass.rb", __FILE__)
