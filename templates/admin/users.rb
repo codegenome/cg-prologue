@@ -69,7 +69,7 @@ end
 
 create_file 'app/views/admin/users/_form.html.haml' do
 <<-'FILE'
-- form_for([:admin, @user])  do |f|
+= form_for([:admin, @user])  do |f|
   .form_errors
     = f.error_messages
   %fieldset#user_form
