@@ -29,5 +29,6 @@ gem "cucumber-rails", :git => "git://github.com/aslakhellesoy/cucumber-rails.git
 gem "capybara", "0.3.9", :group => [:cucumber]
 gem "launchy", :group => [:cucumber]
 gem "timecop", :group => [:test, :cucumber]
+gem "pickle", :group => [:test, :cucumber]
 
 run 'bundle install'
