@@ -1,11 +1,18 @@
 run 'rails generate rspec:install'
 run 'rails generate cucumber:install --capybara --rspec'
 run 'rails generate pickle --email'
-inject_into_file 'config/application.rb', :after => "# Configure the default encoding used in templates for Ruby 1.9.\n" do 
+
+inject_into_file 'config/application.rb', :after => "# Configure the default encoding used in templates for Ruby 1.9.\n" do
 <<-RUBY
     config.generators do |g|
       g.test_framework :rspec
     end
+RUBY
+end
+
+inject_into_file 'features/support/env.rb', :after => "ENV[\"RAILS_ENV\"] ||= \"test\"\n" do 
+<<-RUBY
+$VERBOSE = nil
 RUBY
 end
 
