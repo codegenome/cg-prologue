@@ -1,3 +1,5 @@
+run 'rm spec/controllers/admin/users_controller_spec.rb'
+
 create_file 'spec/controllers/admin/users_controller_spec.rb' do
 <<-'FILE'
 require 'spec_helper'
