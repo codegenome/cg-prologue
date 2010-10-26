@@ -65,6 +65,7 @@ inject_into_file 'app/models/user.rb', :before => "def destroy\n" do
   def role?(role)
     return !!self.roles.find_by_name( Role.sanitize role )
   end
+
 RUBY
 end
 

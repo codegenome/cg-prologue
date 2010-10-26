@@ -43,6 +43,7 @@ create_file 'app/models/user.rb' do
 <<-RUBY
 class User < ActiveRecord::Base
   devise :database_authenticatable, :token_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  default_scope :conditions => { :deleted_at => nil }
   validates_presence_of :name
   validates_uniqueness_of :name, :email, :case_sensitive => false, :scope => :deleted_at
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
