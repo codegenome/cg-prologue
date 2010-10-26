@@ -16,6 +16,8 @@ $VERBOSE = nil
 RUBY
 end
 
+gsub_file 'features/support/env.rb',/require 'cucumber\/rails\/capybara_javascript_emulation'/,'#require \'cucumber/rails/capybara_javascript_emulation\''
+
 run 'mkdir spec/factories'
 
 create_file 'features/step_definitions/helper_steps.rb' do
