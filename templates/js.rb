@@ -8,3 +8,5 @@ inject_into_file 'config/application.rb', :after => "# JavaScript files you want
     config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
 RUBY
 end
+
+gsub 'gsub_file', /config.action_view.javascript_expansions[:defaults] = %w\(\)/, ''
