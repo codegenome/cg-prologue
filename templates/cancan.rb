@@ -87,6 +87,7 @@ if ENV['PROLOGUE_ADMIN']
         .check_box_item
           = check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role), :id => "user_role_#{role.id}"
           %label{:for => "user_role_#{role.id}"}= role.name.humanize
+      = hidden_field_tag "user[role_ids][]", ""
   RUBY
   end
 
@@ -101,12 +102,6 @@ if ENV['PROLOGUE_ADMIN']
     @user.send(:attributes=, { :role_ids => params[:user][:role_ids] }, false) if current_user.role? :admin
     params[:user].delete(:role_ids)
     
-  RUBY
-  end
-
-  inject_into_file 'app/controllers/admin/users_controller.rb', :after => "def update\n" do
-  <<-'RUBY'
-    params[:user][:role_ids] ||= []
   RUBY
   end
 end
