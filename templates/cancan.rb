@@ -91,19 +91,7 @@ if ENV['PROLOGUE_ADMIN']
   RUBY
   end
 
-  inject_into_file 'app/controllers/admin/users_controller.rb', :after => "@user = User.new(params[:user])\n" do
-  <<-'RUBY'
-    @user.role_ids = params[:user][:role_ids] if current_user.role? :admin
-  RUBY
-  end
-
-  inject_into_file 'app/controllers/admin/users_controller.rb', :before => "if @user.update_attributes(params[:user])\n" do
-  <<-'RUBY'
-    @user.send(:attributes=, { :role_ids => params[:user][:role_ids] }, false) if current_user.role? :admin
-    params[:user].delete(:role_ids)
-    
-  RUBY
-  end
+  gsub_file 'app/controllers/admin/users_controller.rb', /# attr_accessor logic here/, '@user.accessible = [:role_ids] if current_user.role? :admin'
 end
 
 append_file 'db/seeds.rb' do

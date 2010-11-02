@@ -1,7 +1,19 @@
-initializer('active_record.rb') do
+initializer('accessible_attributes.rb') do
 <<-'FILE'
-# This forces you to set attr_accessible in all your models
-ActiveRecord::Base.send(:attr_accessible, nil)
+class ActiveRecord::Base
+  attr_accessible
+  attr_accessor :accessible
+
+  private
+
+  def mass_assignment_authorizer
+    if accessible == :all
+      self.class.protected_attributes
+    else
+      super + (accessible || [])
+    end
+  end
+end
 FILE
 end
 
