@@ -1,6 +1,7 @@
 require "net/http"
 require "net/https"
 require "uri"
+require 'rbconfig'
 
 say "Building Application with Prologue..."
 

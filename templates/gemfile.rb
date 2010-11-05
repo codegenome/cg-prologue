@@ -31,4 +31,10 @@ gem "launchy", :group => [:cucumber]
 gem "timecop", :group => [:test, :cucumber]
 gem "pickle", :group => [:test, :cucumber]
 
+# for windows users
+if ( (Config::CONFIG['host_os'] =~ /mswin|mingw/) && (Config::CONFIG["ruby_version"] =~ /1.8/) )
+  gem "win32console", :group => [:test, :cucumber]
+  gem "windows-pr", :group => [:test, :cucumber]
+  gem "win32-open3"
+end
 run 'bundle install'
