@@ -1,4 +1,19 @@
+require "net/http"
+require "net/https"
+require "uri"
+
 say "Building Application with Prologue..."
+
+def get_remote_https_file(source, destination)
+  uri = URI.parse(source)
+  http = Net::HTTP.new(uri.host, uri.port)
+  http.use_ssl = true
+  http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+  request = Net::HTTP::Get.new(uri.request_uri)
+  response = http.request(request)
+  path = File.join(destination_root, destination)
+  File.open(path, "w") { |file| file.write(response.body) }
+end
 
 append_file '.gitignore' do
   '.DS_Store'
