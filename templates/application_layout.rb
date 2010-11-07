@@ -17,6 +17,8 @@ create_file 'app/views/shared/_messages.html.haml' do
   %div#messenger{:class => "flasher"}= flash[:notice]
 - if flash[:error]
   %div#error{:class => "flasher"}= flash[:error]
+- if flash[:alert]
+  %div#alert{:class => "flasher"}= flash[:alert]
 FILE
 end
 
