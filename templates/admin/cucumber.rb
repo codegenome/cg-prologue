@@ -34,14 +34,15 @@ Feature: Administer users
     Given the following role records
     | name   |
     | Member |
+    And a logged in admin
 
   Scenario: Create, update, delete a user in the admin
-    Given a logged in admin user
     When I am on the add user page
-    And I fill in "Name" with "Big Boi"
-    And I fill in "Email" with "big@sirluciousleftfoot.com"
-    And I fill in "Password" with "Ch!coDusty$"
-    And I fill in "Password confirmation" with "Ch!coDusty$"
+    And I fill in the following:
+    | Email                 | big@sirluciousleftfoot.com |
+    | Name                  | Big Boi                    |
+    | Password              | Ch!coDusty$                |
+    | Password confirmation | Ch!coDusty$                |
     And I check "Member"
     And I press "Save"
     Then I should see "User created!"
