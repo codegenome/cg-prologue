@@ -9,7 +9,7 @@ module Prologue
     desc "new [app]", "Create a new Rails 3 application"
     long_desc <<-D
       Prologue will ask you a few questions to determine what features you
-      would like to generate. Based on your answers it will setup a new Rails 3 application. 
+      would like to generate. Based on your answers it will setup a new Rails 3 application.
     D
     method_option :auth, :type => :boolean, :default => true, :banner =>
       "Sets up devise for authentication."
@@ -55,7 +55,7 @@ module Prologue
     end
 
     def git_user_name
-      `git config --global user.name`.chomp || "Quick Left"
+      `git config --global user.name`.chomp.gsub('"', '\"') || "Quick Left"
     end
 
     def git_user_email
