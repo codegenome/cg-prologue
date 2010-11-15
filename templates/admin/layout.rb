@@ -1,3 +1,4 @@
+remove_file 'app/views/admin/dashboard/index.html.haml'
 create_file 'app/views/admin/dashboard/index.html.haml' do
 <<-FILE
 %h1 #{app_name.humanize} Admin

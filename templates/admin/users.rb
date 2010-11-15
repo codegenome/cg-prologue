@@ -92,18 +92,21 @@ create_file 'app/views/admin/users/_form.html.haml' do
 FILE
 end
 
+remove_file 'app/views/admin/users/edit.html.haml'
 create_file 'app/views/admin/users/edit.html.haml' do
 <<-'FILE'
 = render :partial => "form"
 FILE
 end
 
+remove_file 'app/views/admin/users/new.html.haml'
 create_file 'app/views/admin/users/new.html.haml' do
 <<-'FILE'
 = render :partial => "form"
 FILE
 end
 
+remove_file 'app/views/admin/users/index.html.haml'
 create_file 'app/views/admin/users/index.html.haml' do
 <<-FILE
 - if !@users.blank?
