@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    prologue (0.3.8)
+    prologue (0.3.9)
       rails (~> 3.0.0)
       thor
 
