@@ -13,6 +13,7 @@ gem "jammit"
 gem "friendly_id", "~> 3.1"
 gem "will_paginate", "~> 3.0.pre2"
 gem "haml", "~> 3.0.21"
+gem "haml-rails"
 gem "rails3-generators", :group => :development
 gem "hpricot", :group => :development
 gem "ruby_parser", :group => :development
