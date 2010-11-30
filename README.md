@@ -68,5 +68,5 @@ templates into a gem in the first place.
 
 ### Copyright
 
-Copyright (c) 2010 Quick Left. See LICENSE for details.
+Copyright (c) 2010 Collin Schaafsma & Quick Left. See LICENSE for details.
 
