@@ -42,12 +42,18 @@ run 'rm app/models/user.rb'
 create_file 'app/models/user.rb' do
 <<-RUBY
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :token_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  devise :database_authenticatable, :token_authenticatable, :recoverable, :rememberable, :trackable, :confirmable
   default_scope :conditions => { :deleted_at => nil }
-  validates_presence_of :name
-  validates_uniqueness_of :name, :email, :case_sensitive => false, :scope => :deleted_at
+  validates_presence_of     :name
+  validates_presence_of     :password, :on => :create
+  validates_confirmation_of :password, :on => :create
+  validates_length_of       :password, :within => 6..30, :allow_blank => true
+  validates_uniqueness_of   :email, :case_sensitive => false, :scope => :deleted_at
+  validates_confirmation_of :email, :message => "should match confirmation", :on => :create
+  validates_presence_of     :email_confirmation, :on => :create, :if => :email_changed?
+  validates_format_of       :email, :with  => /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i, :allow_blank => true
+
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
-  has_friendly_id :name, :use_slug => true, :strip_non_ascii => true
 
   def destroy
     self.update_attribute(:deleted_at, Time.now.utc)
