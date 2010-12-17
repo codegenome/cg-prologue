@@ -8,7 +8,7 @@ Generate a Rails 3 app with the application templates Quick Left uses to start t
 Prologue provides a base Rails 3 application with Devise and Cancan for authentication and authorization.  Roles are
 stored in the database with a HABTM relationship between the role and user models.  You also get a basic admin to manage
 users.  Prologue also rolls in all of the things we like to have setup in our apps like...
-haml, sass, jquery, cucumber, capybara, mocha, factory_girl, rspec, timecop, autotest, will_paginate, friendly_id, and hoptoad_notifier
+haml, sass, jquery, cucumber, capybara, mocha, factory_girl, rspec, timecop, autotest, evergreen, jasmine, will_paginate, friendly_id, and hoptoad_notifier
 
 Everything is configured and ready to rock your next Rails 3 project.  We hope it saves you a mess of time!
 
@@ -33,6 +33,7 @@ Everything is configured and ready to rock your next Rails 3 project.  We hope i
 
     rake spec
     rake cucumber
+    rake spec:javascripts
     bundle exec autotest
 
 
