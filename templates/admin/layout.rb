@@ -53,7 +53,8 @@ create_file 'app/views/layouts/admin.html.haml' do
     %title 
       #{app_name.humanize}
       = yield(:title)
-    %meta{:name => 'viewport', :content => 'width=device-width; initial-scale=1.0'}
+    %meta{:name => 'viewport', :content => 'width=device-width initial-scale=1.0 maximum-scale=1.0'}
+    %meta{:name => 'apple-mobile-web-app-capable', :content => 'yes'}
     = csrf_meta_tag
     %link{:rel => "shortcut icon", :href => "/images/favicon.ico", :type => "image/x-icon"}
     /[if lt IE 9]
