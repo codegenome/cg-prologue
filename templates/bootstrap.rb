@@ -43,16 +43,19 @@ apply File.expand_path("../rails_clean.rb", __FILE__)
 # Apply js
 apply File.expand_path("../js.rb", __FILE__)
 
+# Apply evergreen and jasmin
+apply File.expand_path("../evergreen.rb", __FILE__)
+
 # Apply HTML5 Layout
 apply File.expand_path("../application_layout.rb", __FILE__)
 
-# Apply SASS 
+# Apply SASS
 apply File.expand_path("../sass.rb", __FILE__)
 
-# Apply Test Suite 
+# Apply Test Suite
 apply File.expand_path("../test_suite.rb", __FILE__)
 
-# Apply Friendly Id 
+# Apply Friendly Id
 apply File.expand_path("../friendly_id.rb", __FILE__)
 
 # Apply Devise?
@@ -61,10 +64,10 @@ apply File.expand_path("../devise.rb", __FILE__) if ENV['PROLOGUE_AUTH']
 # Apply admin
 apply File.expand_path("../admin.rb", __FILE__) if ENV['PROLOGUE_ADMIN']
 
-# Apply cancan 
+# Apply cancan
 apply File.expand_path("../cancan.rb", __FILE__) if ENV['PROLOGUE_ROLES']
 
-# Apply db create and migrations 
+# Apply db create and migrations
 apply File.expand_path("../db.rb", __FILE__)
 
 # Apply db seeds

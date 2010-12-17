@@ -31,6 +31,7 @@ gem "capybara", "~> 0.4.0", :group => [:cucumber]
 gem "launchy", :group => [:cucumber]
 gem "timecop", :group => [:test, :cucumber]
 gem "pickle", :group => [:test, :cucumber]
+gem "evergreen", :require => "evergreen/rails", :group => [:test, :development]
 
 # for windows users
 if ( (Config::CONFIG['host_os'] =~ /mswin|mingw/) && (Config::CONFIG["ruby_version"] =~ /1.8/) )
