@@ -24,6 +24,8 @@ append_file '.gitignore' do
   'db/*.sqlite3'
   'public/system/**/**/**/*'
   '.idea/*'
+  '.sass-cache/**/*'
+  '*.swp'
 end
 
 git :init
