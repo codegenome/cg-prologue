@@ -68,7 +68,7 @@ create_file 'app/views/layouts/application.html.haml' do
     %meta{:name => 'viewport', :content => 'width=device-width initial-scale=1.0 maximum-scale=1.0'}
     %meta{:name => 'apple-mobile-web-app-capable', :content => 'yes'}
     = csrf_meta_tag
-    %link{:rel => "shortcut icon", :href => "/images/favicon.ico", :type => "image/x-icon"}
+    %link{:rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon"}
     %link{:rel => "apple-touch-icon", :href => "/images/ati.png"}
     /[if lt IE 9]
       %script{:type => "text/javascript", :src  => "/javascripts/shiv.js"}
