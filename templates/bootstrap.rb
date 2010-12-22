@@ -91,6 +91,9 @@ apply File.expand_path("../initializers.rb", __FILE__)
 # Clean up generated routes
 apply File.expand_path("../clean_routes.rb", __FILE__)
 
+# Setup yard
+apply File.expand_path("../yard.rb", __FILE__)
+
 # Remove RSpec stuff we are not gonna use right away
 apply File.expand_path("../rspec_clean.rb", __FILE__)
 
