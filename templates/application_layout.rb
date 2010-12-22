@@ -74,16 +74,11 @@ create_file 'app/views/layouts/application.html.haml' do
       %script{:type => "text/javascript", :src  => "/javascripts/shiv.js"}
     = include_stylesheets :main, :media => 'all'
     = yield(:head)
-    /[if IE 7]
-      = stylesheet_link_tag 'ie7', :media => 'all'
-    /[if IE 8]
-      = stylesheet_link_tag 'ie8', :media => 'all'
   %body
     #container
       = render :partial => "shared/header"
       %section#content
         = yield
-      #pusher
     = render :partial => "shared/footer"
     = render :partial => "shared/end_scripts"
 FILE
