@@ -31,6 +31,7 @@ end
 create_file 'app/views/shared/_end_scripts.html.haml' do
 <<-FILE
 = include_javascripts :common
+= yield(:end_scripts)
 FILE
 end
 
