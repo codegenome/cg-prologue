@@ -1,78 +1,42 @@
 create_file 'public/stylesheets/sass/admin.scss' do
 <<-FILE
-@import "common";
-@mixin layout_base {
-  @include reset;
-  @include container;
-  @include user_admin_nav;
-  @include main_admin_nav;
-  //uncomment for a handy layout guide
-  @include layout_guide;
-}
+@import "partials/admin_variables";
+@import "partials/fonts";
+@import "partials/defaults";
+@import "partials/media";
 
-@mixin container($container_size: 950px) {
-    #container {
-	  width: $container_size;
-	  clear:both;
-      padding: 0 20px;
-      min-height: 100%;
-      height: auto !important;
-      height: 100%;
-      margin: 0 auto -80px;
-    }
-	#main_admin_header {
-	  width: $container_size;
-      height: 60px;
-      @include clear_left;
-      h1 {
-        float: left;
-        padding: 20px 0 0 0;
-        font-size: 24px;
-        font-weight: bold;
-      }
-    }
-	#content {
-      width: $container_size;
-      @include clear_left;
-      padding: 10px 0 20px 0;
-    }
-    #main_admin_footer, #pusher {
-      height: 80px;
-      clear:both;
-    }
+@mixin admin {
+  @include fonts;
+  @include defaults;
+  @include media;
 }
+@include admin;
+FILE
+end
 
-@mixin user_admin_nav {
-  #user_admin_nav {
-    float: right;
-    padding: 20px 0 0 0;
-  }
-}
+create_file 'public/stylesheets/sass/partials/_admin_variables.scss' do
+<<-FILE
+$base-font-family: unquote('sans-serif');  // default font-family
 
-@mixin main_admin_nav {
-  #main_admin_nav {
-    width: 950px;
-	@include clear_left;
-    padding: 10px 0;
-    ul {
-	  @include clear_left;
-      li {
-        float: left;
-        padding: 0 15px 0 0;
-      }
-    }
-  }
-}
+$base-font-size: 13px;  // default font-size for YUI fonts
 
-@mixin layout_guide {
-  #container { background-color: #e8e6e6; }
-  #main_admin_header { background-color: #f7dddd; }
-  #main_admin_nav { background-color: #f4ddf7; }
-  #content { background-color: #f2f7dd; }
-  #main_admin_footer .inner { background-color: #ddf7e7; }
-}
+$base-line-height: 1.231;  // default line-height for YUI fonts
 
-@include layout_base;
+$font-color: #444;
+
+$link-color: #607890;
+
+$link-hover-color: #036;
+
+$link-active-color: #607890;
+
+$link-visited-color: #607890;
+
+$selected-font-color: #fff;  // color for selected text
+
+$selected-background-color: #ff5E99;  // bg-color for selected text
+
+$list-left-margin: 1.8em;  // left margin for ul an ol
 FILE
 end
 
