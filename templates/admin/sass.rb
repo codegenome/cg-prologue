@@ -1,6 +1,5 @@
 create_file 'public/stylesheets/sass/admin.scss' do
 <<-FILE
-@import "reset";
 @import "common";
 @mixin layout_base {
   @include reset;

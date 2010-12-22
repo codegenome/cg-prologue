@@ -11,7 +11,9 @@ javascripts:
 stylesheets:
   main:
     - public/stylesheets/main.css
+    - public/stylesheets/reset.css
   admin:
     - public/stylesheets/admin.css
+    - public/stylesheets/reset.css
 FILE
 end

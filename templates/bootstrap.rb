@@ -45,6 +45,9 @@ apply File.expand_path("../rails_clean.rb", __FILE__)
 # Apply js
 apply File.expand_path("../js.rb", __FILE__)
 
+# Apply css
+apply File.expand_path("../css.rb", __FILE__)
+
 # Apply evergreen and jasmin
 apply File.expand_path("../evergreen.rb", __FILE__)
 
