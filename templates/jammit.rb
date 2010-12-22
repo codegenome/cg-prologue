@@ -10,10 +10,10 @@ javascripts:
 
 stylesheets:
   main:
+    - public/stylesheets/reset.css
     - public/stylesheets/main.css
-    - public/stylesheets/reset.css
   admin:
-    - public/stylesheets/admin.css
     - public/stylesheets/reset.css
+    - public/stylesheets/admin.css
 FILE
 end
