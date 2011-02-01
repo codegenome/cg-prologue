@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = "prologue-#{s.version}"
   s.description = "Generate a Rails 3 app with application templates Quick Left uses to start their projects off right!"
 
-  s.required_rubygems_version = "~> 1.3.6"
+  s.required_rubygems_version = "> 1.3.6"
   s.rubyforge_project         = "prologue"
 
   s.add_dependency "thor"
