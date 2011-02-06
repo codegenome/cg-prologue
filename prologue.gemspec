@@ -13,6 +13,8 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project         = "prologue"
 
+  s.required_rubygems_version = "~> 1.5.0"
+
   s.add_dependency "thor"
   s.add_dependency('rails', '~> 3.0.0')
   s.add_development_dependency "bundler", "~> 1.0.0"
