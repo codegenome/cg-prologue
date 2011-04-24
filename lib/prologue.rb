@@ -1,7 +1,11 @@
-$:.unshift(File.dirname(__FILE__) + '/../lib') unless $:.include?(File.dirname(__FILE__) + '/../lib')
-require 'prologue/version'
 require 'prologue/cli'
+require 'prologue/version'
 
 module Prologue
-  
+
+  # Autoloads
+  autoload :Errors , 'prologue/errors'
+  autoload :TemplateRunner , 'prologue/template_runner'
+
 end
+
