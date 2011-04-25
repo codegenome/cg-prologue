@@ -2,10 +2,15 @@
 # -*- mode: ruby -*-
 
 # Requires
-require 'prologue/cli'
+begin
+  require 'prologue'
+rescue LoadError
+  require 'rubygems'
+  require 'prologue'
+end
 
 # Setup Constants
-::PROLOGUE_GEM_ROOT = File.expand_path( File.dirname( __FILE__ ) , ".." )
+::PROLOGUE_GEM_ROOT = File.expand_path( File.dirname( __FILE__ ) + '/../' )
 
 # Run
 Prologue::CLI.start
