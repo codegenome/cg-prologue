@@ -5,6 +5,7 @@
 begin
   require 'prologue'
 rescue LoadError
+  $:.unshift(File.dirname(__FILE__) + '/../lib') unless $:.include?(File.dirname(__FILE__) + '/../lib')
   require 'rubygems'
   require 'prologue'
 end

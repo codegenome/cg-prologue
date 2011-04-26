@@ -2,8 +2,9 @@ PATH
   remote: .
   specs:
     prologue (0.5.5)
+      activesupport (~> 3.0.0)
       rails (~> 3.0.0)
-      thor
+      thor (~> 0.14.6)
 
 GEM
   remote: http://rubygems.org/
@@ -101,8 +102,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aruba
-  bundler (~> 1.0.0)
-  cucumber
+  aruba (~> 0.2.3)
+  bundler (~> 1.0.12)
+  cucumber (~> 0.9.3)
   prologue!
   rspec (~> 2.0.0)
