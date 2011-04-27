@@ -11,7 +11,8 @@ rescue LoadError
 end
 
 # Setup Constants
-::PROLOGUE_GEM_ROOT = File.expand_path( File.dirname( __FILE__ ) + '/../' )
+Prologue::GEM_ROOT = File.expand_path( File.dirname( __FILE__ ) + '/../' )
+Prologue::SHARED_TEMPLATE_ROOT = "#{Prologue::GEM_ROOT}/templates/shared"
 
 # Run
 Prologue::CLI.start

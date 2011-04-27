@@ -111,6 +111,8 @@ say <<-D
 
   Prologue just added like 6 hours to your life.
 
+  Template Installed :: Quick Left Rails 3 Prologue Default
+
   Next run...
   rake spec
   rake cucumber

@@ -17,7 +17,7 @@ module Prologue
     def new( project , template_name = "default" )
 
       # Require the template runner
-      require "#{::PROLOGUE_GEM_ROOT}/templates/#{template_name}/#{template_name}.rb" or raise Prologue::Errors::TemplateRunnerNotImplementedError
+      require "#{Prologue::GEM_ROOT}/templates/#{template_name}/#{template_name}.rb" or raise Prologue::Errors::TemplateRunnerNotImplementedError
 
       # Invoke the template runner
       invoke "prologue:templates:#{template_name}:on_invocation"
@@ -25,7 +25,7 @@ module Prologue
       # Execute the template
       exec(<<-COMMAND)
         rails new #{project} \
-          --template=#{::PROLOGUE_GEM_ROOT}/templates/#{template_name}/bootstrap.rb \
+          --template=#{Prologue::GEM_ROOT}/templates/#{template_name}/bootstrap.rb \
           --skip-test-unit \
           --skip-prototype
       COMMAND
