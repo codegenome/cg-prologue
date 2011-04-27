@@ -49,6 +49,8 @@ say <<-D
 
   Template Installed :: Rails 3 Async
 
+  Make sure you're using MRI Ruby 1.9
+
   Next run...
   rails s thin
 
