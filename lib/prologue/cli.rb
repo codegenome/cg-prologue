@@ -17,7 +17,7 @@ module Prologue
     def new( project , template_name = "default" )
 
       # Require the template runner
-      require "#{Prologue::GEM_ROOT}/templates/#{template_name}/#{template_name}.rb" or raise Prologue::Errors::TemplateRunnerNotImplementedError
+      require "#{Prologue::GEM_ROOT}/templates/#{template_name}/#{template_name}.rb"
 
       # Invoke the template runner
       invoke "prologue:templates:#{template_name}:on_invocation"
