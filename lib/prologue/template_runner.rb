@@ -6,8 +6,12 @@ module Prologue
 
   class TemplateRunner < Thor::Group
 
-    # Standard Arguments
-    argument :project , :type => :string
+    # Define the Standard Arguments in any base template class
+    def self.extended(base)
+      base.class_eval do
+        argument :project , :type => :string
+      end
+    end
 
     # Includes
     include Thor::Actions
