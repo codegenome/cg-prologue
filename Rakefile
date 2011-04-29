@@ -12,8 +12,8 @@ end
 
 # Add our rspec rake task
 require 'rspec/core/rake_task'
-desc "Run all spec examples"
 RSpec::Core::RakeTask.new(:spec)
+RSpec::Core::RakeTask.new(:test)
 
 task :default => :spec
 
