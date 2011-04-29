@@ -5,12 +5,26 @@ Generate a Rails 3 app with the application templates Quick Left uses to start t
 
 ### What you get
 
-Prologue provides a base Rails 3 application with Devise and Cancan for authentication and authorization.  Roles are
-stored in the database with a HABTM relationship between the role and user models.  You also get a basic admin to manage
-users.  Prologue also rolls in all of the things we like to have setup in our apps like...
-haml, sass, jquery, cucumber, capybara, mocha, factory_girl, rspec, timecop, autotest, evergreen, jasmine, will_paginate, friendly_id, and hoptoad_notifier
+Prologue provides a set of templates to generate Rails 3 applications.
+Everything is configured and ready to rock your next Rails 3 project.
+We hope it saves you a mess of time!
 
-Everything is configured and ready to rock your next Rails 3 project.  We hope it saves you a mess of time!
+* Default: A base Rails 3 application with Devise and Cancan for
+  authentication and authorization. Roles are stored in the database
+  with a HABTM relationship between the role and user models. You also get
+  a basic admin to manage users. Prologue also rolls in all of the things
+  we like to have setup in our apps like: haml, sass, jquery, cucumber,
+  capybara, mocha, factory_girl, rspec, timecop, autotest, evergreen,
+  jasmine, will_paginate, friendly_id and hoptoad_notifier.
+
+      prologue new my_app
+      prologue new my_app default
+
+* Async: A Rails 3 application with the basic setup complete for running
+  fully async on the Thin web server. Included gems are thin,
+  rack-fiber_pool, mysql2, and rspec.
+
+      prologue new my_app async
 
 
 ### Quick Start
@@ -20,7 +34,7 @@ Everything is configured and ready to rock your next Rails 3 project.  We hope i
     prologue new my_app
 
 
-### Options
+### Options ( in default template )
 
     prologue new my_app --no-auth
 
@@ -29,7 +43,7 @@ Everything is configured and ready to rock your next Rails 3 project.  We hope i
     prologue new my_app --no-admin
 
 
-### Testing generated app
+### Testing generated default app
 
     rake spec
     rake cucumber
