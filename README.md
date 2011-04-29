@@ -17,14 +17,14 @@ We hope it saves you a mess of time!
   capybara, mocha, factory_girl, rspec, timecop, autotest, evergreen,
   jasmine, will_paginate, friendly_id and hoptoad_notifier.
 
-      prologue new my_app
-      prologue new my_app default
+        prologue new my_app
+        prologue new my_app default
 
 * Async: A Rails 3 application with the basic setup complete for running
   fully async on the Thin web server. Included gems are thin,
   rack-fiber_pool, mysql2, and rspec.
 
-      prologue new my_app async
+        prologue new my_app async
 
 
 ### Quick Start
