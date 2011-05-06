@@ -1,9 +1,12 @@
+require 'active_support/secure_random'
 require 'thor'
 require 'thor/actions'
-require 'active_support/secure_random'
 
 module Prologue
+
   class CLI < Thor
+
+    # Includes
     include Thor::Actions
 
     desc "new [app]", "Create a new Rails 3 application"
@@ -11,35 +14,22 @@ module Prologue
       Prologue will ask you a few questions to determine what features you
       would like to generate. Based on your answers it will setup a new Rails 3 application.
     D
-    method_option :auth, :type => :boolean, :default => true, :banner =>
-      "Sets up devise for authentication."
-    method_option :roles, :type => :boolean, :default => true, :banner =>
-      "Sets up cancan for authorization with roles."
-    method_option :admin, :type => :boolean, :default => true, :banner =>
-      "Sets up very basic admin"
-    def new(project)
-      opts = options.dup
+    def new( project , template_name = "default" )
 
-      # Can't build an admin or roles without devise
-      if !opts[:auth]
-        opts[:admin] = false;
-        opts[:roles] = false;
-      end
+      # Require the template runner
+      require "#{Prologue::GEM_ROOT}/templates/#{template_name}/#{template_name}.rb"
 
-      # Env vars used in our template
-      ENV['PROLOGUE_AUTH']  = "true" if opts[:auth]
-      ENV['PROLOGUE_ADMIN'] = "true" if opts[:admin]
-      ENV['PROLOGUE_ROLES'] = "true" if opts[:roles]
-      ENV['PROLOGUE_USER_NAME'] = git_user_name if opts[:admin]
-      ENV['PROLOGUE_USER_EMAIL'] = git_user_email if opts[:admin]
-      ENV['PROLOGUE_USER_PASSWORD'] = user_password if opts[:admin]
+      # Invoke the template runner
+      invoke "prologue:templates:#{template_name}:on_invocation"
 
+      # Execute the template
       exec(<<-COMMAND)
         rails new #{project} \
-          --template=#{template} \
+          --template=#{Prologue::GEM_ROOT}/templates/#{template_name}/bootstrap.rb \
           --skip-test-unit \
           --skip-prototype
       COMMAND
+
     end
 
     desc "version", "Prints Prologue's version information"
@@ -48,23 +38,7 @@ module Prologue
     end
     map %w(-v --version) => :version
 
-    private
-
-    def template
-      File.expand_path(File.dirname(__FILE__) + "/../../templates/bootstrap.rb")
-    end
-
-    def git_user_name
-      `git config --global user.name`.chomp.gsub('"', '\"') || "Quick Left"
-    end
-
-    def git_user_email
-      `git config --global user.email`.chomp || "me@me.com"
-    end
-
-    def user_password
-      ActiveSupport::SecureRandom.base64(8)
-    end
-
   end
+
 end
+

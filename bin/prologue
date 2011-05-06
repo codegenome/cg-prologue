@@ -1,4 +1,18 @@
 #!/usr/bin/env ruby
-$:.unshift(File.dirname(__FILE__) + '/../lib') unless $:.include?(File.dirname(__FILE__) + '/../lib')
-require 'prologue/cli'
+# -*- mode: ruby -*-
+
+# Requires
+begin
+  require 'prologue'
+rescue LoadError
+  $:.unshift(File.dirname(__FILE__) + '/../lib') unless $:.include?(File.dirname(__FILE__) + '/../lib')
+  require 'rubygems'
+  require 'prologue'
+end
+
+# Setup Constants
+Prologue::GEM_ROOT = File.expand_path( File.dirname( __FILE__ ) + '/../' )
+
+# Run
 Prologue::CLI.start
+

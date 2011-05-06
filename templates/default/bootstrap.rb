@@ -35,70 +35,70 @@ FILE
 end
 
 # Apply Gemfile
-apply File.expand_path("../gemfile.rb", __FILE__)
+apply File.expand_path("../lib/gemfile.rb", __FILE__)
 
 # Apply Jammit
-apply File.expand_path("../jammit.rb", __FILE__)
+apply File.expand_path("../lib/jammit.rb", __FILE__)
 
 # Apply HAML generator
-apply File.expand_path("../haml_generator.rb", __FILE__)
+apply File.expand_path("../lib/haml_generator.rb", __FILE__)
 
 # Apply rails clean up
-apply File.expand_path("../rails_clean.rb", __FILE__)
+apply File.expand_path("../lib/rails_clean.rb", __FILE__)
 
 # Apply js
-apply File.expand_path("../js.rb", __FILE__)
+apply File.expand_path("../lib/js.rb", __FILE__)
 
 # Apply css
-apply File.expand_path("../css.rb", __FILE__)
+apply File.expand_path("../lib/css.rb", __FILE__)
 
 # Apply evergreen and jasmin
-apply File.expand_path("../evergreen.rb", __FILE__)
+apply File.expand_path("../lib/evergreen.rb", __FILE__)
 
 # Apply HTML5 Layout
-apply File.expand_path("../application_layout.rb", __FILE__)
+apply File.expand_path("../lib/application_layout.rb", __FILE__)
 
 # Apply SASS
-apply File.expand_path("../sass.rb", __FILE__)
+apply File.expand_path("../lib/sass.rb", __FILE__)
 
 # Apply Test Suite
-apply File.expand_path("../test_suite.rb", __FILE__)
+apply File.expand_path("../lib/test_suite.rb", __FILE__)
 
 # Apply Friendly Id
-apply File.expand_path("../friendly_id.rb", __FILE__)
+apply File.expand_path("../lib/friendly_id.rb", __FILE__)
 
 # Apply Devise?
-apply File.expand_path("../devise.rb", __FILE__) if ENV['PROLOGUE_AUTH']
+apply File.expand_path("../lib/devise.rb", __FILE__) if ENV['PROLOGUE_AUTH']
 
 # Apply admin
-apply File.expand_path("../admin.rb", __FILE__) if ENV['PROLOGUE_ADMIN']
+apply File.expand_path("../lib/admin.rb", __FILE__) if ENV['PROLOGUE_ADMIN']
 
 # Apply cancan
-apply File.expand_path("../cancan.rb", __FILE__) if ENV['PROLOGUE_ROLES']
+apply File.expand_path("../lib/cancan.rb", __FILE__) if ENV['PROLOGUE_ROLES']
 
 # Apply db create and migrations
-apply File.expand_path("../db.rb", __FILE__)
+apply File.expand_path("../lib/db.rb", __FILE__)
 
 # Apply db seeds
-apply File.expand_path("../db_seed.rb", __FILE__)
+apply File.expand_path("../lib/db_seed.rb", __FILE__)
 
 # Make a home controller
-apply File.expand_path("../home_controller.rb", __FILE__)
+apply File.expand_path("../lib/home_controller.rb", __FILE__)
 
 # Make initializers
-apply File.expand_path("../initializers.rb", __FILE__)
+apply File.expand_path("../lib/initializers.rb", __FILE__)
 
 # Clean up generated routes
-apply File.expand_path("../clean_routes.rb", __FILE__)
+apply File.expand_path("../lib/clean_routes.rb", __FILE__)
 
 # Setup yard
-apply File.expand_path("../yard.rb", __FILE__)
+apply File.expand_path("../lib/yard.rb", __FILE__)
 
 # Remove RSpec stuff we are not gonna use right away
-apply File.expand_path("../rspec_clean.rb", __FILE__)
+apply File.expand_path("../lib/rspec_clean.rb", __FILE__)
 
 # Make the form errors work like they did in 2.3.8
-apply File.expand_path("../dynamic_form.rb", __FILE__)
+apply File.expand_path("../lib/dynamic_form.rb", __FILE__)
 
 login_msg = (ENV['PROLOGUE_ADMIN']) ? "Login to admin with email #{ENV['PROLOGUE_USER_EMAIL']} and password #{ENV['PROLOGUE_USER_PASSWORD']}" : ""
 
@@ -110,6 +110,8 @@ say <<-D
   ########################################################################
 
   Prologue just added like 6 hours to your life.
+
+  Template Installed :: Quick Left Rails 3 Prologue Default
 
   Next run...
   rake spec
