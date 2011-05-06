@@ -1,5 +1,5 @@
 # Add the mysql2 gem
-gem "mysql2"
+gem "mysql2" , "~> 0.2.7"
 
 # Redefine our database.yml using the async adapters
 run 'rm config/database.yml'

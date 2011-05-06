@@ -19,9 +19,6 @@ end
 # Apply Gemfile
 apply File.expand_path("../lib/gemfile.rb", __FILE__)
 
-# Apply Test Suite
-apply File.expand_path("../lib/test_suite.rb", __FILE__)
-
 # Apply db create and migrations
 apply File.expand_path("../lib/mysql2_db.rb", __FILE__)
 
@@ -32,6 +29,9 @@ apply File.expand_path("../lib/thin.rb", __FILE__)
 apply File.expand_path("../lib/rack-fiber_pool.rb", __FILE__)
 
 run 'bundle install'
+
+# Apply Test Suite
+apply File.expand_path("../lib/test_suite.rb", __FILE__)
 
 say <<-D
 
