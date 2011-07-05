@@ -36,9 +36,10 @@ end
 
 create_file '.rvmrc' do
   <<-FILE
-rvm 1.9.2@#{app_name.humanize} --create
+rvm 1.9.2@#{app_name} --create
 FILE
 end
+run 'source .rvmrc'
 
 # Apply Gemfile
 apply File.expand_path("../lib/gemfile.rb", __FILE__)
