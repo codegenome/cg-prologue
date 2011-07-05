@@ -36,13 +36,15 @@ end
 
 create_file '.rvmrc' do
   <<-FILE
-rvm 1.9.2@#{app_name} --create
+rvm #{ENV['RUBY_VERSION']}@#{app_name} --create
 FILE
 end
-run 'source .rvmrc'
 
 # Apply Gemfile
 apply File.expand_path("../lib/gemfile.rb", __FILE__)
+
+# Apply patch
+apply File.expand_path("../lib/patch.rb", __FILE__)
 
 # Apply Jammit
 apply File.expand_path("../lib/jammit.rb", __FILE__)

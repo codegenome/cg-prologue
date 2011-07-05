@@ -2,7 +2,7 @@ say "Building roles"
 generate(:model, "role name:string")
 generate(:migration, "UsersHaveAndBelongToManyRoles")
 habtm_roles = Dir['db/migrate/*_users_have_and_belong_to_many_roles.rb'].first
-inject_into_file habtm_roles, :after => "def self.up\n" do
+inject_into_file habtm_roles, :after => "def up\n" do
 <<-RUBY
     create_table :roles_users, :id => false do |t|
       t.references :role, :user
@@ -10,7 +10,7 @@ inject_into_file habtm_roles, :after => "def self.up\n" do
 RUBY
 end
 
-inject_into_file habtm_roles, :after => "def self.down\n" do
+inject_into_file habtm_roles, :after => "def down\n" do
 <<-RUBY
     drop_table :roles_users
 RUBY
@@ -36,10 +36,10 @@ create_file 'app/models/ability.rb' do
 <<-RUBY
 class Ability
   include CanCan::Ability
- 
+
   def initialize(user)
     user ||= User.new # guest user
- 
+
     if user.role? :admin
       can :manage, :all
     # elsif user.role? :writter
@@ -59,11 +59,11 @@ end
 RUBY
 end
 
-inject_into_file 'app/models/user.rb', :before => "def destroy\n" do
+inject_into_file 'app/models/user.rb', :before => "  def destroy\n" do
 <<-RUBY
 
   def role?(role)
-    return !!self.roles.find_by_name( Role.sanitize role )
+    return !!self.roles.find_by_name(Role.sanitize role)
   end
 
 RUBY
@@ -80,7 +80,7 @@ RUBY
 end
 
 if ENV['PROLOGUE_ADMIN']
-  inject_into_file 'app/views/admin/users/_form.html.haml', :after => "= f.password_field :password_confirmation\n" do 
+  inject_into_file 'app/views/admin/users/_form.html.haml', :after => "= f.password_field :password_confirmation\n" do
   <<-'RUBY'
     .form_row
       - Role.find(:all, :order => "name").each do |role|
@@ -100,7 +100,7 @@ Role.create! :name => 'Admin'
 Role.create! :name => 'Member'
 
 user1 = User.find_by_email('#{ENV['PROLOGUE_USER_EMAIL']}')
-user1.role_ids = [1,2]
+user1.role_ids = [1, 2]
 user1.save
 FILE
 end

@@ -10,13 +10,13 @@ inject_into_file 'config/application.rb', :after => "# Configure the default enc
 RUBY
 end
 
-inject_into_file 'features/support/env.rb', :after => "ENV[\"RAILS_ENV\"] ||= \"test\"\n" do 
-<<-RUBY
-$VERBOSE = nil
-RUBY
-end
+# inject_into_file 'features/support/env.rb', :after => "ENV[\"Rails.env\"] ||= \"test\"\n" do
+# <<-RUBY
+# $VERBOSE = nil
+# RUBY
+# end
 
-gsub_file 'features/support/env.rb',/require 'cucumber\/rails\/capybara_javascript_emulation'/,'#require \'cucumber/rails/capybara_javascript_emulation\''
+# gsub_file 'features/support/env.rb', /require 'cucumber\/rails\/capybara_javascript_emulation'/, '#require \'cucumber/rails/capybara_javascript_emulation\''
 
 run 'mkdir spec/factories'
 

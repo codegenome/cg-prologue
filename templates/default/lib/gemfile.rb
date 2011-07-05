@@ -1,6 +1,5 @@
-run 'rm Gemfile'
 create_file 'Gemfile', "source 'http://rubygems.org'\n"
-gem "rails", "~> 3.1.0.rc4"
+gem "rails", "~> #{ENV['PROLOGUE_RAILS_VERSION']}"
 gem "sqlite3-ruby", :require => "sqlite3"
 if ENV['PROLOGUE_AUTH']
   gem 'devise', "~> 1.4.2"
@@ -10,10 +9,12 @@ if ENV['PROLOGUE_ROLES']
 end
 gem "hoptoad_notifier"
 gem "jammit"
-gem "friendly_id", "~> 3.2.1.1"
+gem "friendly_id", "~> 3.3.0.alpha2"
 gem "will_paginate", "~> 3.0.pre2"
 gem "haml", "~> 3.1.2"
 gem "haml-rails"
+gem "sass", "3.1.4"
+gem "sass-rails", "~> 3.1.0.rc.2"
 gem "yard"
 gem "bluecloth"
 gem "rails3-generators", :group => :development
