@@ -34,8 +34,6 @@ public/system/**/**/**/*
 FILE
 end
 
-rvm :init
-
 create_file '.rvmrc' do
   <<-FILE
 rvm 1.9.2@#{app_name.humanize} --create
