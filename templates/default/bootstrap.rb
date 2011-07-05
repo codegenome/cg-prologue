@@ -20,7 +20,7 @@ git :init
 
 run 'rm .gitignore'
 create_file '.gitignore' do
-<<-FILE
+  <<-FILE
 .bundle
 .DS_Store
 log/*.log
@@ -31,6 +31,14 @@ public/system/**/**/**/*
 .idea/*
 .sass-cache/**/*
 *.swp
+FILE
+end
+
+rvm :init
+
+create_file '.rvmrc' do
+  <<-FILE
+rvm 1.9.2@#{app_name.humanize} --create
 FILE
 end
 
