@@ -12,18 +12,18 @@ Gem::Specification.new do |s|
   s.description = "Generate a Rails 3 app with application templates Quick Left uses to start their projects off right!"
 
   s.rubyforge_project         = "prologue"
-  s.required_rubygems_version = "> 1.3.6"
+  s.required_rubygems_version = "~> 1.8.5"
 
   # Runtime Dependencies
-  s.add_dependency "activesupport" , "~> 3.0.7"
-  s.add_dependency "rails"         , "~> 3.0.7"
+  s.add_dependency "activesupport" , "~> 3.1.0.rc4"
+  s.add_dependency "rails"         , "~> 3.1.0.rc4"
   s.add_dependency "thor"          , "~> 0.14.6"
 
   # Development Dependencies
-  s.add_development_dependency "aruba"    , "~> 0.2.3"
-  s.add_development_dependency "bundler"  , "~> 1.0.12"
-  s.add_development_dependency "cucumber" , "~> 0.9.3"
-  s.add_development_dependency "rspec"    , "~> 2.0.0"
+  s.add_development_dependency "aruba"    , "~> 0.4.3"
+  s.add_development_dependency "bundler"  , "~> 1.0.15"
+  s.add_development_dependency "cucumber" , "~> 1.0.0"
+  s.add_development_dependency "rspec"    , "~> 2.6.0"
 
   s.files        = `git ls-files`.split("\n")
   s.executables  = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact
