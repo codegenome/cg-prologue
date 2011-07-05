@@ -1,4 +1,4 @@
-require 'active_support/secure_random'
+require 'securerandom'
 
 module Prologue
 
@@ -48,7 +48,7 @@ module Prologue
       end
 
       def user_password
-        ActiveSupport::SecureRandom.base64(8)
+        SecureRandom.base64(8)
       end
 
     end

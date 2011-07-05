@@ -15,7 +15,6 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = "~> 1.8.5"
 
   # Runtime Dependencies
-  s.add_dependency "activesupport" , "~> 3.1.0.rc4"
   s.add_dependency "rails"         , "~> 3.1.0.rc4"
   s.add_dependency "thor"          , "~> 0.14.6"
 

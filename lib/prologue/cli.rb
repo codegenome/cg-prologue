@@ -1,4 +1,3 @@
-require 'active_support/secure_random'
 require 'thor'
 require 'thor/actions'
 
