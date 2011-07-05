@@ -15,12 +15,12 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = "~> 1.8.5"
 
   # Runtime Dependencies
-  s.add_dependency "rails"         , "~> 3.1.0.rc4"
+  s.add_dependency "rails"         , "~> #{Prologue::DEFAULT_RAILS_VERSION}"
   s.add_dependency "thor"          , "~> 0.14.6"
+  s.add_dependency "bundler"       , "~> 1.0.15"
 
   # Development Dependencies
   s.add_development_dependency "aruba"    , "~> 0.4.3"
-  s.add_development_dependency "bundler"  , "~> 1.0.15"
   s.add_development_dependency "cucumber" , "~> 1.0.0"
   s.add_development_dependency "rspec"    , "~> 2.6.0"
 

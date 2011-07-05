@@ -13,7 +13,7 @@ module Prologue
       Prologue will ask you a few questions to determine what features you
       would like to generate. Based on your answers it will setup a new Rails 3 application.
     D
-    def new( project , template_name = "default" )
+    def new(project, template_name = "default")
 
       # Require the template runner
       require "#{Prologue::GEM_ROOT}/templates/#{template_name}/#{template_name}.rb"
@@ -21,12 +21,17 @@ module Prologue
       # Invoke the template runner
       invoke "prologue:templates:#{template_name}:on_invocation"
 
+      # Use rvm
+      require 'prologue/rvm'
+      Prologue::Rvm.setup project, (ENV['RUBY_VERSION'] || Prologue::DEFAULT_RUBY_VERSION)
+
       # Execute the template
       exec(<<-COMMAND)
         rails new #{project} \
           --template=#{Prologue::GEM_ROOT}/templates/#{template_name}/bootstrap.rb \
           --skip-test-unit \
-          --skip-prototype
+          --skip-prototype \
+          --skip-gemfile
       COMMAND
 
     end
