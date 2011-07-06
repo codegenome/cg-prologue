@@ -72,7 +72,7 @@ create_file 'app/views/layouts/application.html.haml' do
     %link{:rel => "apple-touch-icon", :href => "/images/ati.png"}
     /[if lt IE 9]
       %script{:type => "text/javascript", :src  => "/assets/shiv.js"}
-    = stylesheet_link_tag :application, :media => 'all'
+    = stylesheet_link_tag :main, :media => 'all'
     = yield(:head)
   %body
     #container
@@ -103,7 +103,7 @@ create_file 'public/maintenance.html' do
     <!--[if lt IE 9]>
       <script src='/assets/shiv.js' type='text/javascript'></script>
     <![endif]-->
-    <link href="/assets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <Link href="/assets/main.css" media="all" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <div id='container'>

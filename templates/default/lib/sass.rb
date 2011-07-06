@@ -1,11 +1,15 @@
 empty_directory "app/assets/stylesheets/partials"
+empty_directory "app/assets/stylesheets/main"
 
-create_file 'app/assets/stylesheets/main.scss' do
+create_file 'app/assets/stylesheets/main.css.scss' do
 <<-FILE
-@import "partials/main_variables";
-@import "partials/fonts";
-@import "partials/defaults";
-@import "partials/media";
+/*
+ *= require ./reset
+ *= require_self
+ *= require_tree ./main
+ */
+
+@import "partials/*";
 
 @mixin main {
   @include fonts;
@@ -16,7 +20,7 @@ create_file 'app/assets/stylesheets/main.scss' do
 FILE
 end
 
-create_file 'app/assets/stylesheets/partials/_main_variables.scss' do
+create_file 'app/assets/stylesheets/partials/_variables.css.scss' do
 <<-FILE
 $base-font-family: unquote('sans-serif');  // default font-family
 
@@ -42,7 +46,7 @@ $list-left-margin: 1.8em;  // left margin for ul an ol
 FILE
 end
 
-create_file 'app/assets/stylesheets/partials/_fonts.scss' do
+create_file 'app/assets/stylesheets/partials/_fonts.css.scss' do
 <<-FILE
 $base-font-family: unquote("sans-serif") !default;
 $base-font-size: 13px !default;
@@ -99,7 +103,7 @@ $base-line-height: 1.231 !default;
 FILE
 end
 
-create_file 'app/assets/stylesheets/partials/_media.scss' do
+create_file 'app/assets/stylesheets/partials/_media.css.scss' do
 <<-FILE
 @mixin media {
   @media print {
@@ -163,7 +167,7 @@ create_file 'app/assets/stylesheets/partials/_media.scss' do
 FILE
 end
 
-create_file 'app/assets/stylesheets/partials/_defaults.scss' do
+create_file 'app/assets/stylesheets/partials/_defaults.css.scss' do
 <<-FILE
 $font-color: #444 !default;  //looks better than black: twitter.com/H_FJ/statuses/11800719859
 $link-color: #607890 !default;
