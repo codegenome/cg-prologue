@@ -46,8 +46,8 @@ apply File.expand_path("../lib/gemfile.rb", __FILE__)
 # Apply patch
 apply File.expand_path("../lib/patch.rb", __FILE__)
 
-# Apply HAML generator
-apply File.expand_path("../lib/haml_generator.rb", __FILE__)
+# Apply generators
+apply File.expand_path("../lib/generators.rb", __FILE__)
 
 # Apply rails clean up
 apply File.expand_path("../lib/rails_clean.rb", __FILE__)
