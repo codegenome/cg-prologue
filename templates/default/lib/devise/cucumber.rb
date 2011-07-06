@@ -1,28 +1,28 @@
 
 create_file 'spec/factories/user.rb' do
 <<-'FILE'
-Factory.define :user do |u| 
+Factory.define :user do |u|
   u.sequence(:name) { |n| "Quick #{n}" }
   u.sequence(:email) { |n| "user.#{n}@quickleft.com" }
-  u.password "password" 
+  u.password "password"
   u.confirmed_at Time.new.to_s
   u.confirmation_sent_at Time.new.to_s
-  u.password_confirmation { |u| u.password } 
-end 
+  u.password_confirmation { |u| u.password }
+end
 
-Factory.define :admin, :parent => :user do |admin| 
+Factory.define :admin, :parent => :user do |admin|
   admin.email "admin@quickleft.com"
-  admin.password "password" 
+  admin.password "password"
   admin.roles { [ Factory(:role, :name => 'Admin') ] }
-end 
+end
 
 Factory.define :member, :parent => :user do |member|
   member.email "member@quickleft.com"
   member.password "password"
-  member.roles { [ Factory(:role, :name => 'Member') ] } 
+  member.roles { [ Factory(:role, :name => 'Member') ] }
 end
 
-Factory.define :role do |role| 
+Factory.define :role do |role|
   role.sequence(:name) { |n| "Quick #{n}".camelize }
 end
 FILE
@@ -57,7 +57,7 @@ end
 
 inject_into_file 'features/support/paths.rb', :after => "case page_name\n" do
 <<-'FILE'
-      
+
       when /logout/
         '/users/sign_out'
 
@@ -84,8 +84,8 @@ Feature: Forgot password
     Then I should see "You will receive an email with instructions about how to reset your password in a few minutes."
     And 1 emails should be delivered to forgot@quickleft.com
     When I click the first link in the email
-    And I fill in "Password" with "myNewP@ssword"
-    And I fill in "Password confirmation" with "myNewP@ssword"
+    And I fill in "New password" with "myNewP@ssword"
+    And I fill in "Confirm new password" with "myNewP@ssword"
     And I press "Change my password"
     Then I should see "Your password was changed successfully. You are now signed in."
 FILE
