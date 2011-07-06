@@ -39,7 +39,7 @@ end
 
 create_file 'app/views/admin/shared/_end_scripts.html.haml' do
 <<-FILE
-= include_javascripts :common
+= javascript_include_tag :application
 FILE
 end
 
