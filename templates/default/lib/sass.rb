@@ -1,7 +1,6 @@
-empty_directory "public/stylesheets/sass"
-empty_directory "public/stylesheets/sass/partials"
+empty_directory "app/assets/stylesheets/partials"
 
-create_file 'public/stylesheets/sass/main.scss' do
+create_file 'app/assets/stylesheets/main.scss' do
 <<-FILE
 @import "partials/main_variables";
 @import "partials/fonts";
@@ -17,7 +16,7 @@ create_file 'public/stylesheets/sass/main.scss' do
 FILE
 end
 
-create_file 'public/stylesheets/sass/partials/_main_variables.scss' do
+create_file 'app/assets/stylesheets/partials/_main_variables.scss' do
 <<-FILE
 $base-font-family: unquote('sans-serif');  // default font-family
 
@@ -43,7 +42,7 @@ $list-left-margin: 1.8em;  // left margin for ul an ol
 FILE
 end
 
-create_file 'public/stylesheets/sass/partials/_fonts.scss' do
+create_file 'app/assets/stylesheets/partials/_fonts.scss' do
 <<-FILE
 $base-font-family: unquote("sans-serif") !default;
 $base-font-size: 13px !default;
@@ -100,7 +99,7 @@ $base-line-height: 1.231 !default;
 FILE
 end
 
-create_file 'public/stylesheets/sass/partials/_media.scss' do
+create_file 'app/assets/stylesheets/partials/_media.scss' do
 <<-FILE
 @mixin media {
   @media print {
@@ -131,7 +130,7 @@ create_file 'public/stylesheets/sass/partials/_media.scss' do
   abbr[title]:after { content: " (" attr(title) ")"; }
   .ir a:after { content: ""; }  /* Don't show links for images */
   pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
-  thead { display: table-header-group; } /* css-discuss.incutio.com/wiki/Printing_Tables */ 
+  thead { display: table-header-group; } /* css-discuss.incutio.com/wiki/Printing_Tables */
   tr, img { page-break-inside: avoid; }
   @page { margin: 0.5cm; }
   p, h2, h3 { orphans: 3; widows: 3; }
@@ -152,7 +151,7 @@ create_file 'public/stylesheets/sass/partials/_media.scss' do
   // Style adjustments for landscape mode goes here
 }
 
-// Grade-A Mobile Browsers (Opera Mobile, iPhone Safari, Android Chrome)  
+// Grade-A Mobile Browsers (Opera Mobile, iPhone Safari, Android Chrome)
 // Consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/
 @mixin media-mobile($optimize: true) {
   // j.mp/textsizeadjust
@@ -164,7 +163,7 @@ create_file 'public/stylesheets/sass/partials/_media.scss' do
 FILE
 end
 
-create_file 'public/stylesheets/sass/partials/_defaults.scss' do
+create_file 'app/assets/stylesheets/partials/_defaults.scss' do
 <<-FILE
 $font-color: #444 !default;  //looks better than black: twitter.com/H_FJ/statuses/11800719859
 $link-color: #607890 !default;
@@ -262,7 +261,7 @@ $list-left-margin: 1.8em !default;
 }
 
 // These selection declarations have to be separate.
-// No text-shadow: twitter.com/miketaylr/status/12228805301 
+// No text-shadow: twitter.com/miketaylr/status/12228805301
 // Also: hot pink.
 @mixin selected-text {
   ::-moz-selection{ background:$selected-background-color; color: $selected-font-color; text-shadow: none; }
@@ -284,7 +283,7 @@ $list-left-margin: 1.8em !default;
   // www.viget.com/inspire/styling-the-button-element-in-internet-explorer/
   button {  width: auto; overflow: visible; }
 
-  // bicubic resizing for non-native sized IMG: 
+  // bicubic resizing for non-native sized IMG:
   // code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/
   .ie7 img { -ms-interpolation-mode: bicubic; }
 
@@ -297,5 +296,3 @@ $list-left-margin: 1.8em !default;
 }
 FILE
 end
-
-run 'sass public/stylesheets/sass/main.scss public/stylesheets/main.css'

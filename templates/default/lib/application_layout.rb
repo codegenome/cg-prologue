@@ -30,7 +30,7 @@ end
 
 create_file 'app/views/shared/_end_scripts.html.haml' do
 <<-FILE
-= include_javascripts :common
+= javascript_include_tag :application
 = yield(:end_scripts)
 - if Rails.env == 'production'
   :javascript
@@ -71,8 +71,8 @@ create_file 'app/views/layouts/application.html.haml' do
     %link{:rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon"}
     %link{:rel => "apple-touch-icon", :href => "/images/ati.png"}
     /[if lt IE 9]
-      %script{:type => "text/javascript", :src  => "/javascripts/shiv.js"}
-    = include_stylesheets :main, :media => 'all'
+      %script{:type => "text/javascript", :src  => "/assets/shiv.js"}
+    = stylesheet_link_tag :application, :media => 'all'
     = yield(:head)
   %body
     #container
@@ -101,10 +101,9 @@ create_file 'public/maintenance.html' do
     <meta content='width=device-width initial-scale=1.0 maximum-scale=1.0' name='viewport'>
     <link href='/favicon.ico' rel='shortcut icon' type='image/x-icon'>
     <!--[if lt IE 9]>
-      <script src='/javascripts/shiv.js' type='text/javascript'></script>
+      <script src='/assets/shiv.js' type='text/javascript'></script>
     <![endif]-->
-    <link href="/stylesheets/reset.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="/stylesheets/main.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="/assets/application.css" media="all" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <div id='container'>

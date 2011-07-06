@@ -6,7 +6,7 @@ require 'spec_helper'
 include Devise::TestHelpers
 
 describe Admin::UsersController do
-  
+
   before(:each) do
     @user = @user ||=Factory.create(:admin)
     sign_in @user

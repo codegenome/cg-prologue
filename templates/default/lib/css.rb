@@ -1,4 +1,4 @@
-create_file 'public/stylesheets/reset.css' do
+create_file 'app/assets/stylesheets/reset.css' do
 <<-FILE
 /*
   html5doctor.com Reset Stylesheet (Eric Meyer's Reset Reloaded + HTML5 baseline)

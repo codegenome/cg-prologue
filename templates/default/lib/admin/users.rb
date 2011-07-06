@@ -61,11 +61,11 @@ gsub_file 'app/controllers/admin/users_controller.rb', /ApplicationController/, 
 inject_into_file 'app/controllers/admin/users_controller.rb', :after => "class Admin::UsersController < Admin::BaseController\n" do
 <<-'FILE'
   before_filter :find_user, :only => [:edit, :update, :destroy]
-    
+
   def find_user
     @user = User.find(params[:id])
   end
-  
+
 FILE
 end
 

@@ -1,4 +1,4 @@
-create_file 'public/stylesheets/sass/admin.scss' do
+create_file 'app/assets/stylesheets/admin.scss' do
 <<-FILE
 @import "partials/admin_variables";
 @import "partials/fonts";
@@ -14,7 +14,7 @@ create_file 'public/stylesheets/sass/admin.scss' do
 FILE
 end
 
-create_file 'public/stylesheets/sass/partials/_admin_variables.scss' do
+create_file 'app/assets/stylesheets/partials/_admin_variables.scss' do
 <<-FILE
 $base-font-family: unquote('sans-serif');  // default font-family
 
@@ -39,5 +39,3 @@ $selected-background-color: #ff5E99;  // bg-color for selected text
 $list-left-margin: 1.8em;  // left margin for ul an ol
 FILE
 end
-
-run 'sass public/stylesheets/sass/admin.scss public/stylesheets/admin.css'

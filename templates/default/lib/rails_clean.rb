@@ -1,8 +1,8 @@
 run 'rm public/index.html'
+run 'rm app/assets/images/rails.png'
+run 'rm app/assets/stylesheets/application.css'
 run 'rm README'
 run 'rm public/favicon.ico'
-get "http://www.quickleft.com/favicon.ico", "public/favicon.ico"
-# get "http://www.quickleft.com/ati.png", "public/images/ati.png"
 create_file 'README.md' do
 <<-FILE
 #{app_name.humanize}
