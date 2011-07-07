@@ -20,7 +20,7 @@ git :init
 
 run 'rm .gitignore'
 create_file '.gitignore' do
-  <<-FILE
+<<-FILE
 .bundle
 .DS_Store
 log/*.log
@@ -28,6 +28,7 @@ tmp/**/*
 config/database.yml
 db/*.sqlite3
 public/system/**/**/**/*
+public/assets/
 .idea/*
 .sass-cache/**/*
 *.swp
@@ -35,7 +36,7 @@ FILE
 end
 
 create_file '.rvmrc' do
-  <<-FILE
+<<-FILE
 rvm #{ENV['RUBY_VERSION']}@#{app_name} --create
 FILE
 end
