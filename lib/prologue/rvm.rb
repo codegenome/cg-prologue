@@ -9,19 +9,19 @@ module Prologue
       $LOAD_PATH.unshift(rvm_lib_path) unless $LOAD_PATH.include?(rvm_lib_path)
       require 'rvm'
 
-      @env = RVM::Environment.new(ruby_version)
+      env = RVM::Environment.new(ruby_version)
 
       puts "Creating gemset #{project} in #{ruby_version}"
-      @env.gemset_create(project)
+      env.gemset_create(project)
 
       puts "Now using gemset #{project}"
-      @env.use!("#{ruby_version}@#{project}")
+      env.use!("#{ruby_version}@#{project}")
 
       puts "Installing rails gem."
-      @env.system("gem", "install", "rails", "--version", Prologue::DEFAULT_RAILS_VERSION)
+      env.system("gem", "install", "rails", "--version", Prologue::DEFAULT_RAILS_VERSION)
 
       puts "Installing bundler gem."
-      @env.system("gem", "install", "bundler")
+      env.system("gem", "install", "bundler")
 
     end
 
