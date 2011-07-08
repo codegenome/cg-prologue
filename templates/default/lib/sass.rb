@@ -73,7 +73,7 @@ $base-line-height: 1.231 !default;
 
   select, input, textarea, button { font: 99% $family; }
 
-  // normalize monospace sizing 
+  // normalize monospace sizing
   // meyerweb.com/eric/thoughts/2010/02/12/fixed-monospace-sizing/
   // en.wikipedia.org/wiki/MediaWiki_talk:Common.css/Archive_11#Teletype_style_fix_for_Chrome
   pre, code, kbd, samp { font-family: monospace, sans-serif; }
