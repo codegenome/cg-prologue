@@ -15,6 +15,7 @@ create_file 'app/views/admin/shared/_header.html.haml' do
 %nav#main_admin_nav
   %ul
     %li= link_to 'Home', root_path
+    %li= link_to 'Users', admin_users_path
   %ul#user_admin_nav
     = render 'devise/menu/login_items'
 FILE
