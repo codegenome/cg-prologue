@@ -10,10 +10,11 @@ create_file 'app/controllers/admin/base_controller.rb' do
 <<-RUBY
 class Admin::BaseController < ApplicationController
   layout 'admin'
-  before_filter :authenticate_user!  
+  before_filter :authenticate_user!
   before_filter :verify_admin
 
-private
+  private
+
   def verify_admin
     redirect_to root_url unless current_user.role? :admin
   end
