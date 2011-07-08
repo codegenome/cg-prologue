@@ -8,6 +8,7 @@ create_file 'app/views/shared/_header.html.haml' do
 %nav#main_nav
   %ul
     %li= link_to 'Home', root_path
+    %li= link_to 'Admin', admin_path
 FILE
 end
 

@@ -84,6 +84,10 @@ inject_into_file 'app/controllers/application_controller.rb', :before => "end\n"
 RUBY
 end
 
+inject_into_file 'app/views/shared/_header.html.haml', :after => "%li= link_to 'Admin', admin_path" do
+  ' if current_user.try :role?, :admin'
+end
+
 if ENV['PROLOGUE_ADMIN']
   inject_into_file 'app/views/admin/users/_form.html.haml', :after => "= f.password_field :password_confirmation\n" do
   <<-'RUBY'
