@@ -1,3 +1,5 @@
+empty_directory "app/assets/stylesheets/admin"
+
 create_file 'app/assets/stylesheets/admin.css.scss' do
 <<-FILE
 /*
