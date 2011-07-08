@@ -52,6 +52,12 @@ group :development do
   gem 'yard'              # documentation generation
 end
 
+group :deployment do
+  gem 'capistrano'
+  gem 'capistrano-ext'
+  gem 'capistrano_colors'
+end
+
 group :test do
   gem 'autotest'
   gem 'autotest-rails'

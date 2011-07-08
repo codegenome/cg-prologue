@@ -107,6 +107,9 @@ apply File.expand_path("../lib/rspec_clean.rb", __FILE__)
 # Make the form errors work like they did in 2.3.8
 apply File.expand_path("../lib/dynamic_form.rb", __FILE__)
 
+# Setup Capistrano
+apply File.expand_path("../lib/capistrano.rb", __FILE__)
+
 login_msg = (ENV['PROLOGUE_ADMIN']) ? "Login to admin with email #{ENV['PROLOGUE_USER_EMAIL']} and password #{ENV['PROLOGUE_USER_PASSWORD']}" : ""
 
 say <<-D
