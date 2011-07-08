@@ -42,8 +42,11 @@ run 'rm app/models/user.rb'
 create_file 'app/models/user.rb' do
 <<-RUBY
 class User < ActiveRecord::Base
+
   devise :database_authenticatable, :token_authenticatable, :recoverable, :rememberable, :trackable, :confirmable
+
   default_scope :conditions => { :deleted_at => nil }
+
   validates_presence_of     :name, :email
   validates_presence_of     :password, :on => :create
   validates_confirmation_of :password, :on => :create

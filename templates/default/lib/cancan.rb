@@ -26,6 +26,11 @@ inject_into_file 'app/models/role.rb', :after => "class Role < ActiveRecord::Bas
 <<-RUBY
   has_and_belongs_to_many :users
 
+  validates_presence_of :name
+
+  attr_accessible :name
+
+
   def self.sanitize role
     role.to_s.humanize.split(' ').each{ |word| word.capitalize! }.join(' ')
   end
