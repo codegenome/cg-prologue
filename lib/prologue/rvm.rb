@@ -15,7 +15,7 @@ module Prologue
       @env.gemset_create(project)
 
       puts "Now using gemset #{project}"
-      @env.gemset_use!(project)
+      @env.use!("#{ruby_version}@#{project}")
 
       puts "Installing rails gem."
       @env.system("gem", "install", "rails", "--version", Prologue::DEFAULT_RAILS_VERSION)
