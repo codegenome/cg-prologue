@@ -1,19 +1,37 @@
-create_file 'Gemfile', "source 'http://rubygems.org'\n"
+create_file 'Gemfile' do
 
-gem 'rails', "~> #{ENV['PROLOGUE_RAILS_VERSION']}"
+  gemfile = <<-RUBY
 
-gem 'sqlite3-ruby', :require => 'sqlite3'
-if ENV['PROLOGUE_AUTH']
-  gem 'devise', '~> 1.4.2'
-end
-if ENV['PROLOGUE_ROLES']
-  gem 'cancan'
-end
-gem 'hoptoad_notifier'
-gem 'friendly_id', '~> 3.3.0.alpha2'
-gem 'will_paginate', '~> 3.0.pre2'
-gem 'yard'
-gem 'bluecloth'
+source 'http://rubygems.org'
+
+# Core
+
+gem 'rails' , '~> #{ENV['PROLOGUE_RAILS_VERSION']}'
+gem 'rake'  , '~> 0.9.2'
+
+# Database
+
+# Miscellaneous
+
+gem 'bluecloth'                         # Markdown
+RUBY
+
+  if ENV['PROLOGUE_ROLES']
+    gemfile << "gem 'cancan'                            # authorization\n"
+  end
+
+  if ENV['PROLOGUE_AUTH']
+    gemfile << "gem 'devise'        , '~> 1.4.2'        # authentication\n"
+  end
+
+  gemfile << <<-RUBY
+gem 'friendly_id'   , '~> 3.3.0.alpha2' # slugging and permalink
+gem 'hpricot'                           # HTML parser
+gem 'rails_config'                      # settings
+gem 'will_paginate' , '~> 3.0.pre2'     # pagination
+gem 'formtastic'                        # form builder
+
+# Asset pipeline
 
 gem 'coffee-script'
 gem 'haml-rails'
@@ -21,35 +39,62 @@ gem 'jquery-rails'
 gem 'sass-rails', '~> 3.1.0.rc.2'
 gem 'uglifier'
 
-gem 'rails3-generators' , :group => :development
-gem 'hpricot'           , :group => :development
-gem 'ruby_parser'       , :group => :development
+# External services
 
-gem 'mocha'          , :group => :test
-gem 'faker'          , :group => :test
-gem 'autotest'       , :group => :test
-gem 'autotest-rails' , :group => :test
+gem 'hoptoad_notifier'
 
-gem 'cucumber'             , :group => :cucumber
-gem 'cucumber-rails'       , :group => :cucumber
-gem 'capybara', '~> 1.0.0' , :group => :cucumber
-gem 'launchy'              , :group => :cucumber
+# Groups
 
-gem 'rspec-rails', '~> 2.6.1'                  , :group => [:test, :development]
-gem 'evergreen', :require => 'evergreen/rails' , :group => [:test, :development]
+group :development do
+  gem 'annotate'
+  gem 'rails3-generators' # a bunch of generators
+  gem 'ruby_parser'
+  gem 'yard'              # documentation generation
+end
 
-gem 'factory_girl_rails' , :group => [:test, :cucumber]
-gem 'database_cleaner'   , :group => [:test, :cucumber]
-gem 'timecop'            , :group => [:test, :cucumber]
-gem 'pickle'             , :group => [:test, :cucumber]
+group :test do
+  gem 'autotest'
+  gem 'autotest-rails'
+  gem 'faker'           # fake data generator
+  gem 'mocha'           # mocking and stubbing
+end
 
-gem 'thin', :group => [:test, :cucumber, :development]
+group :cucumber do
+  gem 'capybara', '~> 1.0.0'
+  gem 'cucumber'
+  gem 'cucumber-rails'
+  gem 'launchy'
+end
 
-# for windows users
-if ( (Config::CONFIG['host_os'] =~ /mswin|mingw/) && (Config::CONFIG["ruby_version"] =~ /1.8/) )
-  gem 'win32console', :group => [:test, :cucumber]
-  gem 'windows-pr', :group => [:test, :cucumber]
-  gem 'win32-open3'
+group :development, :test do
+  gem 'evergreen'    , :require => 'evergreen/rails'
+  gem 'rspec-rails'  , '~> 2.6.1'
+  gem 'sqlite3-ruby' , :require => 'sqlite3'
+end
+
+group :cucumber, :test do
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'pickle'
+  gem 'timecop'
+end
+
+group :cucumber, :development, :test do
+  gem 'thin'
+end
+RUBY
+
+  # for windows users
+  if ( (Config::CONFIG['host_os'] =~ /mswin|mingw/) && (Config::CONFIG["ruby_version"] =~ /1.8/) )
+    gemfile << <<-RUBY
+gem 'win32console', :group => [:test, :cucumber]
+gem 'windows-pr', :group => [:test, :cucumber]
+gem 'win32-open3'
+RUBY
+  end
+
+  gemfile
+
 end
 
 run 'bundle install'
