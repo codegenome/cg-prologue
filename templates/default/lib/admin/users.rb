@@ -74,21 +74,27 @@ create_file 'app/views/admin/users/_form.html.haml' do
 = form_for([:admin, @user])  do |f|
   .form_errors
     = f.error_messages
-  %fieldset#user_form
-    .form_row
-      = f.label :name
-      = f.text_field :name
-    .form_row
-      = f.label :email
-      = f.text_field :email
-    .form_row
-      = f.label :password
-      = f.password_field :password
-    .form_row
-      = f.label :password_confirmation
-      = f.password_field :password_confirmation
-    .form_row.form_row_button
-      = f.submit "Save"
+  %fieldset#user_form.inputs
+    %ol
+      %li
+        = f.label :name
+        = f.text_field :name
+      %li
+        = f.label :email
+        = f.text_field :email
+      %li
+        = f.label :password
+        = f.password_field :password
+      %li
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation
+
+  %fieldset#user_form.buttons
+    %ol
+      %li.commit
+        = f.submit 'Save'
+      %li.cancel
+        = link_to 'Cancel', admin_users_path
 FILE
 end
 

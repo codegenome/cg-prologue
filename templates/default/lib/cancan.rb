@@ -91,12 +91,17 @@ end
 if ENV['PROLOGUE_ADMIN']
   inject_into_file 'app/views/admin/users/_form.html.haml', :after => "= f.password_field :password_confirmation\n" do
   <<-'RUBY'
-    .form_row
-      - Role.find(:all, :order => "name").each do |role|
-        .check_box_item
-          = check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role), :id => "user_role_#{role.id}"
-          %label{:for => "user_role_#{role.id}"}= role.name.humanize
-      = hidden_field_tag "user[role_ids][]", ""
+      %li.check_boxes
+        %fieldset
+          %legend
+            Roles
+          %ol
+            - Role.find(:all, :order => "name").each do |role|
+              %li
+                = hidden_field_tag "user[role_ids][]", ""
+                %span
+                  = check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role), :id => "user_role_#{role.id}"
+                %label{:for => "user_role_#{role.id}"}= role.name.humanize
   RUBY
   end
 

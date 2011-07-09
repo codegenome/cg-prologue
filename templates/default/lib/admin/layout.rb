@@ -11,13 +11,13 @@ create_file 'app/views/admin/shared/_header.html.haml' do
 <<-FILE
 %header#admin_header
   %h1= link_to '#{app_name.humanize}', root_path
+  %nav#admin_nav
+    %ul.tabs
+      %li= link_to 'Home', root_path
+      %li= link_to 'Users', admin_users_path
+    %ul#user_admin_nav.tabs
+      = render 'devise/menu/login_items'
 = render 'admin/shared/messages'
-%nav#admin_nav
-  %ul
-    %li= link_to 'Home', root_path
-    %li= link_to 'Users', admin_users_path
-  %ul#user_admin_nav
-    = render 'devise/menu/login_items'
 FILE
 end
 
@@ -60,7 +60,7 @@ create_file 'app/views/layouts/admin.html.haml' do
     %meta{'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge,chrome=1'}
     %title<
       #{app_name.humanize}
-      = yield(:title)
+      = yield :title
     %meta{:name => 'viewport', :content => 'width=device-width initial-scale=1.0 maximum-scale=1.0'}
     %meta{:name => 'apple-mobile-web-app-capable', :content => 'yes'}
     = csrf_meta_tag
@@ -68,12 +68,16 @@ create_file 'app/views/layouts/admin.html.haml' do
     /[if lt IE 9]
       %script{:type => "text/javascript", :src  => "/assets/shiv.js"}
     = stylesheet_link_tag :admin, :media => 'all'
-    = yield(:head)
+    = yield :head
   %body
-    #container
+    #wrapper
       = render :partial => "admin/shared/header"
-      %section#content
-        = yield
+      %section#content.without_sidebar
+        #main_content_wrapper
+          %section#main_content
+            = yield
+        %section#sidebar
+          = yield :sidebar
     = render :partial => "admin/shared/footer"
     = render :partial => "admin/shared/end_scripts"
 FILE
