@@ -9,10 +9,10 @@ run 'mkdir app/views/admin/shared'
 
 create_file 'app/views/admin/shared/_header.html.haml' do
 <<-FILE
-%header#main_admin_header
+%header#admin_header
   %h1= link_to '#{app_name.humanize}', root_path
 = render 'admin/shared/messages'
-%nav#main_admin_nav
+%nav#admin_nav
   %ul
     %li= link_to 'Home', root_path
     %li= link_to 'Users', admin_users_path
@@ -34,7 +34,7 @@ end
 
 create_file 'app/views/admin/shared/_footer.html.haml' do
 <<-FILE
-%footer#main_admin_footer
+%footer#admin_footer
 FILE
 end
 
