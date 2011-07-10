@@ -72,7 +72,7 @@ create_file 'app/views/layouts/admin.html.haml' do
   %body
     #wrapper
       = render :partial => "admin/shared/header"
-      %section#content.without_sidebar
+      %section#content{:class => (content_for?(:sidebar) ? :with_sidebar : :without_sidebar)}
         #main_content_wrapper
           %section#main_content
             = yield
