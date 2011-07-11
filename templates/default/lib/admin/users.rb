@@ -1,5 +1,7 @@
 generate(:controller, "admin/users index new create edit update destroy")
 
+run 'rm app/views/admin/users/destroy.html.haml'
+
 inject_into_file 'config/routes.rb', :after => "devise_for :users\n" do
 <<-'FILE'
   namespace "admin" do
@@ -102,6 +104,11 @@ remove_file 'app/views/admin/users/edit.html.haml'
 create_file 'app/views/admin/users/edit.html.haml' do
 <<-'FILE'
 = render :partial => "form"
+
+- content_for :title_bar do
+  = title_bar('Edit User') do |breadbrumb, actions|
+    - breadbrumb['Admin'] = admin_path
+    - breadbrumb['Users'] = admin_users_path
 FILE
 end
 
@@ -109,6 +116,11 @@ remove_file 'app/views/admin/users/new.html.haml'
 create_file 'app/views/admin/users/new.html.haml' do
 <<-'FILE'
 = render :partial => "form"
+
+- content_for :title_bar do
+  = title_bar('New User') do |breadbrumb, actions|
+    - breadbrumb['Admin'] = admin_path
+    - breadbrumb['Users'] = admin_users_path
 FILE
 end
 
@@ -135,6 +147,11 @@ create_file 'app/views/admin/users/index.html.haml' do
   = will_paginate @users
 - else
   %p No users
+
+- content_for :title_bar do
+  = title_bar('Users') do |breadbrumb, actions|
+    - breadbrumb['Admin'] = admin_path
+    - actions['New user'] = new_admin_user_path
 FILE
 end
 

@@ -17,6 +17,9 @@ create_file 'app/views/admin/shared/_header.html.haml' do
       %li= link_to 'Users', admin_users_path
     %ul#user_admin_nav.tabs
       = render 'devise/menu/login_items'
+- if content_for? :title_bar
+  %section#title_bar
+    = yield :title_bar
 = render 'admin/shared/messages'
 FILE
 end
