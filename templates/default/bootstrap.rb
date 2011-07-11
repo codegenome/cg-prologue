@@ -110,6 +110,12 @@ apply File.expand_path("../lib/dynamic_form.rb", __FILE__)
 # Setup Capistrano
 apply File.expand_path("../lib/capistrano.rb", __FILE__)
 
+# Copying assets
+run "cp -fr \"ENV['PROLOGUE_GEM_ROOT']/app/assets\" vendor"
+
+# Annotate models
+run 'annotate -p before -i -e tests -e fixtures'
+
 login_msg = (ENV['PROLOGUE_ADMIN']) ? "Login to admin with email #{ENV['PROLOGUE_USER_EMAIL']} and password #{ENV['PROLOGUE_USER_PASSWORD']}" : ""
 
 say <<-D

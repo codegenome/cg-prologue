@@ -35,6 +35,7 @@ module Prologue
         ENV['PROLOGUE_USER_EMAIL'] = git_user_email if opts[:admin]
         ENV['PROLOGUE_USER_PASSWORD'] = user_password if opts[:admin]
         ENV['PROLOGUE_RAILS_VERSION'] = Prologue::DEFAULT_RAILS_VERSION
+        ENV['PROLOGUE_GEM_ROOT'] = Prologue::GEM_ROOT
 
       end
 
