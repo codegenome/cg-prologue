@@ -30,6 +30,7 @@ gem 'hpricot'                           # HTML parser
 gem 'rails_config'                      # settings
 gem 'will_paginate' , '~> 3.0.pre2'     # pagination
 gem 'formtastic'                        # form builder
+gem 'meta_search'   , '~> 1.1.0.pre2'   # search forms helpers
 
 # Asset pipeline
 

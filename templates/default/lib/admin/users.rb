@@ -12,7 +12,9 @@ end
 
 inject_into_file 'app/controllers/admin/users_controller.rb', :after => "def index\n" do
 <<-'FILE'
-    @users = User.paginate :page => params[:page], :per_page => 50
+    @search = User.search params[:search]
+    @users = @search.paginate(:page => params[:page],
+                              :per_page => 50)
 FILE
 end
 
@@ -128,22 +130,22 @@ remove_file 'app/views/admin/users/index.html.haml'
 create_file 'app/views/admin/users/index.html.haml' do
 <<-FILE
 - if !@users.blank?
-  %table
+  %table.index_table
     %thead
       %tr
-        %th Name
-        %th Email
+        %th= sort_link @search, :name
+        %th= sort_link @search, :email
         %th
     %tbody
       - @users.each do |user|
         %tr
-          %td= link_to user.name, edit_admin_user_path(user), :class => 'edit_link'
+          %td= link_to user.name, edit_admin_user_path(user)
           %td= user.email
           %td
+            = link_to "Edit", edit_admin_user_path(user)
             - if user.id != current_user.id
-              = link_to "Delete", admin_user_path(user), :confirm => 'Are you sure?', :method => :delete, :class => 'delete_link'
-            - else
-              That's you!
+              |
+              = link_to "Delete", admin_user_path(user), :confirm => 'Are you sure?', :method => :delete
   = will_paginate @users
 - else
   %p No users
@@ -152,6 +154,34 @@ create_file 'app/views/admin/users/index.html.haml' do
   = title_bar('Users') do |breadbrumb, actions|
     - breadbrumb['Admin'] = admin_path
     - actions['New user'] = new_admin_user_path
+
+- content_for :sidebar do
+  = render 'index_sidebar'
 FILE
 end
 
+create_file 'app/views/admin/users/_index_sidebar.html.haml' do
+<<-FILE
+%section.panel.sidebar_section
+  %header
+    %h3 Filters
+  .panel_contents
+    = form_for @search, :url => admin_users_path, :html => { :class => :filter_form } do |f|
+      .filter_form_field.filter_string
+        %label Name
+        = f.text_field :name_contains
+      .filter_form_field.filter_string
+        %label Email
+        = f.text_field :email_contains
+      .filter_form_field.filter_check_boxes
+        %label Roles
+        .check_boxes_wrapper
+          - f.collection_checks :roles_id_in, Role.order(:name), :id, :name do |check|
+            = check.box
+            = check.label
+            %br
+      .buttons
+        = f.submit 'Filter'
+        = link_to 'Clear Filters', '#', :class => :clear_filters_btn
+FILE
+end
