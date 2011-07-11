@@ -30,7 +30,7 @@ inject_into_file 'app/controllers/admin/users_controller.rb', :after => "def cre
     # attr_accessor logic here
     @user.attributes = params[:user]
     if @user.save
-      flash[:notice] = "User created!"
+      flash[:notice] = "User created successfully."
       redirect_to admin_users_url
     else
       render :action => 'new'
@@ -55,7 +55,7 @@ end
 inject_into_file 'app/controllers/admin/users_controller.rb', :after => "def destroy\n" do
 <<-'FILE'
     @user.destroy
-    flash[:notice] = "User deleted."
+    flash[:notice] = "User #{@user.name} has been deleted."
     redirect_to admin_users_url
 FILE
 end
@@ -75,30 +75,13 @@ end
 
 create_file 'app/views/admin/users/_form.html.haml' do
 <<-'FILE'
-= form_for([:admin, @user])  do |f|
-  .form_errors
-    = f.error_messages
-  %fieldset#user_form.inputs
-    %ol
-      %li
-        = f.label :name
-        = f.text_field :name
-      %li
-        = f.label :email
-        = f.text_field :email
-      %li
-        = f.label :password
-        = f.password_field :password
-      %li
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation
-
-  %fieldset#user_form.buttons
-    %ol
-      %li.commit
-        = f.submit 'Save'
-      %li.cancel
-        = link_to 'Cancel', admin_users_path
+= semantic_form_for([:admin, @user]) do |f|
+  = f.inputs do
+    = f.input :name
+    = f.input :email
+    = f.input :password
+    = f.input :password_confirmation
+  = f.buttons
 FILE
 end
 

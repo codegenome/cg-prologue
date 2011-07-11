@@ -27,11 +27,11 @@ end
 create_file 'app/views/admin/shared/_messages.html.haml' do
 <<-FILE
 - if flash[:notice]
-  %div#messenger{:class => "flasher"}= flash[:notice]
+  %div#notice.flasher= flash[:notice]
 - if flash[:error]
-  %div#error{:class => "flasher"}= flash[:error]
+  %div#error.flasher= flash[:error]
 - if flash[:alert]
-  %div#alert{:class => "flasher"}= flash[:alert]
+  %div#alert.flasher= flash[:alert]
 FILE
 end
 
@@ -44,6 +44,7 @@ end
 create_file 'app/views/admin/shared/_end_scripts.html.haml' do
 <<-FILE
 = javascript_include_tag :application
+= javascript_include_tag 'active_admin/base.js'
 FILE
 end
 
@@ -70,6 +71,7 @@ create_file 'app/views/layouts/admin.html.haml' do
     %link{:rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon"}
     /[if lt IE 9]
       %script{:type => "text/javascript", :src  => "/assets/shiv.js"}
+    = stylesheet_link_tag 'active_admin/_base.css', :media => 'all'
     = stylesheet_link_tag :admin, :media => 'all'
     = yield :head
   %body
