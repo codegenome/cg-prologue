@@ -111,7 +111,7 @@ apply File.expand_path("../lib/dynamic_form.rb", __FILE__)
 apply File.expand_path("../lib/capistrano.rb", __FILE__)
 
 # Copying assets
-run "cp -fr \"ENV['PROLOGUE_GEM_ROOT']/app/assets\" vendor"
+run "cp -fr \"#{ENV['PROLOGUE_GEM_ROOT']}/app/assets\" vendor"
 
 # Annotate models
 run 'annotate -p before -i -e tests -e fixtures'
