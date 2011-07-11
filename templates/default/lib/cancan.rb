@@ -91,7 +91,7 @@ end
 if ENV['PROLOGUE_ADMIN']
   inject_into_file 'app/views/admin/users/_form.html.haml', :after => "= f.input :password_confirmation\n" do
   <<-'RUBY'
-    = f.input :password_confirmation
+    = f.input :roles, :as => :check_boxes
   RUBY
   end
 

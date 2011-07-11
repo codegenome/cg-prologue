@@ -45,7 +45,7 @@ Feature: Administer users
     | Password confirmation | Ch!coDusty$                |
     And I check "Member"
     And I press "Save"
-    Then I should see "User created!"
+    Then I should see "User created successfully."
     And I should see "Big Boi"
 
     When I follow "Big Boi"
@@ -69,9 +69,9 @@ Feature: Administer users
     Then I press "Save"
 
     Then I follow "Delete"
-    Then I should see "User deleted."
+    Then I should see "User Bigger Boi has been deleted."
+    When I follow "Users"
     And I should not see "Bigger Boi"
-
 
 FILE
 end

@@ -81,7 +81,8 @@ create_file 'app/views/admin/users/_form.html.haml' do
     = f.input :email
     = f.input :password
     = f.input :password_confirmation
-  = f.buttons
+  = f.buttons do
+    = f.commit_button 'Save'
 FILE
 end
 
