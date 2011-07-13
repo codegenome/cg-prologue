@@ -23,7 +23,7 @@ inject_into_file 'config/environments/test.rb', :after => "config.action_control
 RUBY
 end
 
-gsub_file 'config/environments/production.rb', /config.i18n.fallbacks = true/ do
+gsub_file 'config/environments/production.rb', /  config.i18n.fallbacks = true/ do
 <<-RUBY
   config.i18n.fallbacks = true
   config.action_mailer.default_url_options = { :host => 'yourhost.com' }

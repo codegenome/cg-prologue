@@ -2,6 +2,8 @@ run 'capify .'
 
 run 'rm config/deploy.rb'
 
+run 'cp config/environments/production.rb config/environments/staging.rb'
+
 create_file 'config/deploy.rb' do
 <<-RUBY
 
@@ -27,9 +29,26 @@ require 'hoptoad_notifier/capistrano'
 
 # Callbacks
 
+after('deploy:update_code',
+      'db:symlink',
+      'assets:create_dirs')
+
+after 'deploy:symlink', 'assets:precompile'
+
 after 'deploy', 'deploy:cleanup'
 
 # Custom tasks
+
+namespace :assets do
+  task :create_dirs, :roles => :app do
+    run "mkdir -p #{release_path}/app/assets/stylesheets/main"
+    run "mkdir -p #{release_path}/app/assets/stylesheets/admin"
+  end
+
+  task :precompile, :roles => :app do
+    run "cd #{current_path}; RAILS_ENV=#{stage} rake assets:precompile"
+  end
+end
 
 # If you are using Passenger mod_rails uncomment this:
 # namespace :deploy do
@@ -40,6 +59,11 @@ after 'deploy', 'deploy:cleanup'
 #   end
 # end
 
+namespace :db do
+  task :symlink, :roles => :app do
+    run "ln -ns #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+  end
+end
 RUBY
 end
 
