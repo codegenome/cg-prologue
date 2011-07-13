@@ -25,11 +25,12 @@ RUBY
   end
 
   gemfile << <<-RUBY
+gem 'formtastic'                        # form builder
 gem 'friendly_id'   , '~> 3.3.0.alpha2' # slugging and permalink
 gem 'hpricot'                           # HTML parser
 gem 'rails_config'                      # settings
-gem 'will_paginate' , '~> 3.0.pre2'     # pagination
-gem 'formtastic'                        # form builder
+
+gem 'will_paginate', :git => 'https://github.com/JackDanger/will_paginate.git'
 
 # Asset pipeline
 
