@@ -1,3 +1,5 @@
+@import "../mixins/*";
+
 body.logged_in {
   .flash {
     @include primary-gradient;
